@@ -53,9 +53,9 @@
 ### 1.6. Phân công (alias hoặc vai trò, KHÔNG ghi họ tên/MSSV)
 | Alias / vai trò | Đầu việc chính | Commit/PR tiêu biểu |
 |---|---|---|
-| **Lead / BA / Tester** | Đặc tả yêu cầu `REQUIREMENTS.md`, bộ fixture `SEED_FIXTURES.md` (4 phép tính), bộ automated test Jest | [`6b7e9d7`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/6b7e9d743794c43fba5ba1b8d4fcac28fc3fb6bf) |
-| **Backend / Architect** | Thiết kế kiến trúc `DECISIONS.md` (4 phép tính), lập trình module `server/scoring.js`, mở rộng API & SQLite, cấu hình CI | [`6b7e9d7`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/6b7e9d743794c43fba5ba1b8d4fcac28fc3fb6bf) |
-| **Frontend / UX** | Thiết kế giao diện 2 pha trên `lesson.js`, phản hồi 2 tầng, điều hướng phím Tab/Enter A11y, làm slide demo | [`6b7e9d7`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/6b7e9d743794c43fba5ba1b8d4fcac28fc3fb6bf) |
+| **Lead / BA / Tester** | Đặc tả yêu cầu `REQUIREMENTS.md`, bộ fixture `SEED_FIXTURES.md` (4 phép tính), bộ automated test Jest | [`a17368e`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/a17368ebb690b96a9c1657848a314151e2b4fab0) |
+| **Backend / Architect** | Thiết kế kiến trúc `DECISIONS.md` (4 phép tính), lập trình module `server/scoring.js`, mở rộng API & SQLite, cấu hình CI | [`a17368e`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/a17368ebb690b96a9c1657848a314151e2b4fab0) |
+| **Frontend / UX** | Thiết kế giao diện 2 pha trên `lesson.js`, phản hồi 2 tầng, điều hướng phím Tab/Enter A11y, làm slide demo | [`a17368e`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/a17368ebb690b96a9c1657848a314151e2b4fab0) |
 
 ## PC-2 — 18/11/2026
 
