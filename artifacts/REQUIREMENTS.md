@@ -26,10 +26,13 @@ Hệ thống *Vườn Toán Lớp 3* là một ứng dụng web giáo dục brow
 Trong chương trình Giáo dục Phổ thông 2018 (Chương trình GDPT 2018) môn Toán cấp Tiểu học, đặc biệt là bộ sách giáo khoa chuẩn **"Kết nối tri thức với cuộc sống"**, kỹ năng **ước lượng kết quả (Estimation Skill)** và **làm tròn số (Rounding Skill)** đóng vai trò hạt nhân trong việc phát triển năng lực toán học:
 - **Phát triển năng lực cảm nhận số (Number Sense):** Giúp học sinh nhanh chóng nắm bắt độ lớn của con số trước khi bắt tay vào các phép biến đổi hình thức.
 - **Tự kiểm soát và phát hiện lỗi sai lớn (Error Detection & Self-Regulation):** Trong thực tế dạy học lớp 3, học sinh thường mắc các lỗi sai cơ bản như quên nhớ (trong phép cộng, phép trừ có nhớ), nhân nhầm hàng chục, hoặc ước lượng thương sai lệch quá xa trong phép chia. Khi có thói quen ước lượng nhẩm trước, nếu kết quả tính ra lệch xa so với con số ước lượng trong đầu, học sinh sẽ có phản xạ tự kiểm tra lại bài làm.
+- **Đổi mới trọng tâm sư phạm — Ước lượng là năng lực cốt lõi (Tỷ lệ điểm 70 / 30):** Thay vì xem ước lượng là bước phụ phụ thuộc, hệ thống thiết kế **ƯỚC LƯỢNG LÀ TRỌNG TÂM CHIẾM 70% TỔNG ĐIỂM** (gồm 55% Điểm Logic nền tảng + 15% Điểm thưởng tốc độ Time Bonus), trong khi **ĐẶT TÍNH ĐÚNG CHIẾM 30% TỔNG ĐIỂM** (25% Điểm Logic + 5% Điểm thưởng tốc độ Time Bonus). Trọng số này thúc đẩy mạnh mẽ tinh thần dám làm tròn, dám nhẩm tính nhanh của học sinh tiểu học.
+- **Bộ đếm thời gian thích ứng tối đa 60 giây mỗi pha (Adaptive Phase Countdown Timer):** Để rèn luyện phản xạ số học nhanh, mỗi pha làm bài (Pha 1: Ước lượng nhẩm; Pha 2: Đặt tính đúng) được trang bị bộ đếm ngược thời gian thích ứng tối đa 60 giây. Hoàn thành càng nhanh càng nhận được nhiều điểm thưởng tốc độ (Time Bonus). Khi hết 60 giây, hệ thống tự động khóa ô nhập và chuyển pha an toàn, không làm mất bài thi của học sinh.
+- **Phân cấp logic sư phạm 5 bậc cho đáp án ước lượng:** Đánh giá chính xác chiều sâu tư duy của học sinh từ Điểm neo Vàng (100%), Điểm neo Bạc (75%), Nhập đáp án tính đúng vào ô ước lượng (50% + nhắc nhở sư phạm), Trong khoảng nhưng không theo quy tắc/gõ bừa (35% + gợi ý phương pháp), đến Ngoài khoảng (0%).
 - **Mở rộng bài toán toàn diện:** Không chỉ dừng lại ở phép nhân và phép chia, tính năng mới được thiết kế mở rộng bao phủ cả **phép CỘNG** và **phép TRỪ** các số có 2 chữ số với nhau. Đây là nền tảng cốt lõi của môn Toán Lớp 3, giúp học sinh luyện tập trọn vẹn cả 4 phép tính cơ bản (Cộng, Trừ, Nhân, Chia).
 - **Phản hồi 2 tầng độc lập (Two-Tier Feedback UX):** Học sinh nhận được phản hồi tách bạch:
-  1. *Tầng 1 (Ước lượng):* Nhận xét độ hợp lý của con số ước lượng nhẩm.
-  2. *Tầng 2 (Tính đúng):* Đánh giá độ chính xác tuyệt đối của kết quả tính toán chi tiết.
+  1. *Tầng 1 (Ước lượng):* Nhận xét độ hợp lý của con số ước lượng nhẩm, công nhận huy hiệu Điểm neo Vàng / Bạc, nhắc nhở nếu nhập trùng kết quả đúng, và cộng điểm thưởng tốc độ.
+  2. *Tầng 2 (Tính đúng):* Đánh giá độ chính xác tuyệt đối của kết quả tính toán chi tiết kèm điểm thưởng thời gian.
 
 ### 1.3. Cơ sở khoa học & Đối chiếu chuẩn kiến thức kĩ năng Toán Lớp 3 (Bộ sách "Kết nối tri thức với cuộc sống")
 
@@ -73,20 +76,31 @@ Quy trình sư phạm 2 bước chuẩn hóa:
 ### 2.1. Phạm vi thực hiện (In-Scope)
 1. **Dạng câu hỏi mới `estimate` đa năng:**
    - Hỗ trợ đầy đủ 4 phép toán cơ bản của chương trình Lớp 3: **Cộng 2 chữ số, Trừ 2 chữ số, Nhân và Chia**.
-   - Lưu trữ đầy đủ: Đề bài phép tính, kết quả chính xác, khoảng ước lượng hợp lý và giải thích sư phạm chi tiết.
-2. **Thuật toán chấm điểm ước lượng tất định (Deterministic Scoring Engine):**
-   - Đánh giá ước lượng của học sinh dựa trên các quy tắc toán học xác định:
-     + Điều kiện sai số tương đối: $\text{Error}(E, A) = \frac{|E - A|}{A} \le 15\%$ (có ngưỡng bảo vệ sai số tuyệt đối tối thiểu $\Delta_{min} = \max(2, \lceil 0.15 \times A \rceil)$).
-     + Điều kiện khoảng neo làm tròn sư phạm: $E \in [E_{min}, E_{max}]$ được định nghĩa sẵn theo SGK.
-   - Đánh giá kết quả tính chính xác (so sánh bằng số học tuyệt đối).
+   - Lưu trữ đầy đủ: Đề bài phép tính, kết quả chính xác, điểm neo Vàng (`gold_anchor`), danh sách điểm neo Bạc (`silver_anchors`), khoảng ước lượng hợp lý (`[estimate_min, estimate_max]`) và giải thích sư phạm chi tiết.
+2. **Thuật toán chấm điểm ước lượng tất định & Phân cấp logic sư phạm (Deterministic Scoring & Pedagogical Hierarchy):**
+   - **Nguyên tắc phân bổ trọng số điểm: ƯỚC LƯỢNG LÀ TRỌNG TÂM CHIẾM 70% TỔNG ĐIỂM, ĐẶT TÍNH ĐÚNG CHIẾM 30% TỔNG ĐIỂM:**
+     + **Pha 1 — Ước lượng nhẩm (Tối đa 70%):** Gồm **55% Điểm Logic nền tảng (Base Logic)** + **15% Điểm thưởng tốc độ (Time Bonus)**.
+     + **Pha 2 — Đặt tính đúng (Tối đa 30%):** Gồm **25% Điểm Logic nền tảng (Base Logic)** + **5% Điểm thưởng tốc độ (Time Bonus)**.
+   - **Phân cấp logic sư phạm 5 bậc cho đáp án ước lượng ($E$):**
+     1. 🥇 **Điểm neo Vàng (Gold Anchor - 100% Base, tức 55% tổng điểm):** Học sinh áp dụng chuẩn xác quy tắc làm tròn đến hàng chục SGK Toán 3 cho các toán hạng ($E = E_{gold}$).
+     2. 🥈 **Điểm neo Bạc (Silver Anchors - 75% Base, tức 41.25% tổng điểm):** Học sinh áp dụng làm tròn 1 toán hạng hoặc chiến lược làm tròn hợp lệ được chấp nhận ($E \in SilverAnchors$).
+     3. ⚠️ **Nhập đáp án tính đúng vào ô ước lượng (Exact Match in Estimate Box - 50% Base, tức 27.5% tổng điểm):** Học sinh tính ra kết quả đúng rồi điền vào ô ước lượng ($E = A$). Hệ thống chấm 50% điểm Base và kèm lời nhắc nhở sư phạm giúp học sinh hiểu bản chất bài học là rèn luyện phản xạ nhẩm trước khi tính.
+     4. 💡 **Trong khoảng nhưng không theo quy tắc / gõ bừa (In-range Random/No-rule - 35% Base, tức 19.25% tổng điểm):** Giá trị nằm trong khoảng dung sai $E \in [E_{min}, E_{max}]$ nhưng không trùng bất kỳ điểm neo Vàng hay Bạc nào. Hệ thống ghi nhận 35% điểm Base và hiển thị gợi ý phương pháp làm tròn.
+     5. ❌ **Ngoài khoảng (Out-of-range - 0% Base):** Giá trị quá xa thực tế ($E < E_{min}$ hoặc $E > E_{max}$).
+   - **Cơ chế bộ đếm thời gian thích ứng tối đa 60 giây mỗi pha (Adaptive Phase Timer):**
+     + Mỗi pha tương tác có đồng hồ đếm ngược độc lập từ 60 giây về 0 giây ($T = 60s$).
+     + **Điểm thưởng tốc độ (Time Bonus):**
+       * Pha ước lượng: $\text{TimeBonus}_{est} = \text{round}\left(15 \times \frac{\max(0, 60 - t_{est})}{60}\right)$ (chỉ tính thưởng khi học sinh đạt điểm logic ước lượng > 0).
+       * Pha tính đúng: $\text{TimeBonus}_{exact} = \text{round}\left(5 \times \frac{\max(0, 60 - t_{exact})}{60}\right)$ (chỉ tính thưởng khi kết quả tính đúng $100\%$).
+     + **Xử lý hết giờ (Timeout 60s):** Khi đồng hồ về 0, hệ thống tự động khóa ô nhập và tự động chuyển sang pha tiếp theo hoặc tự động nộp bài; học sinh nhận 0 điểm Time Bonus của pha đó nhưng điểm Base logic cho câu trả lời đã gõ vẫn được chấm bình thường.
    - Module tính điểm tách biệt hoàn toàn (`server/scoring.js`), không phụ thuộc Express, không gọi LLM/AI lúc runtime, test được 100%.
 3. **Phản hồi người dùng 2 tầng (Two-Tier Feedback UX):**
-   - Tầng 1: Đánh giá ước lượng (*"Ước lượng hợp lý 🎉"* hoặc *"Ước lượng chưa sát, hãy thử làm tròn đến hàng chục nhé 🌱"*).
-   - Tầng 2: Đánh giá phép tính (*"Kết quả tính chính xác 👏"* hoặc *"Kết quả tính chưa đúng, hãy kiểm tra lại phép tính nhé ✏️"*).
+   - Tầng 1: Đánh giá ước lượng kèm huy hiệu (Vàng 🥇 / Bạc 🥈 / Nhắc nhở tính đúng ⚠️ / Gợi ý làm tròn 💡 / Sai lệch lớn ❌) và điểm thưởng tốc độ đạt được.
+   - Tầng 2: Đánh giá phép tính (*"Kết quả tính chính xác 👏"* hoặc *"Kết quả tính chưa đúng, hãy kiểm tra lại phép tính nhé ✏️"*) kèm thời gian hoàn thành.
 4. **Tích hợp liền mạch vào hệ thống có sẵn:**
    - Hoạt động trực tiếp trên trang làm bài chung `public/lesson.html` và phiếu luyện tập `public/exercise.html` (thỏa mãn B-01).
    - Lưu điểm, số sao và số câu đúng vào bảng `attempts` và `progress` trên SQLite; tải lại trang (F5) không mất điểm (B-05).
-5. **Bộ 16 câu hỏi mẫu synthetic:** Bổ sung vào `data/seed.json` phục vụ luyện tập và kiểm thử (4 Cộng, 4 Trừ, 4 Nhân, 4 Chia) (B-02).
+5. **Bộ 16 câu hỏi mẫu synthetic:** Bổ sung vào `data/seed.json` phục vụ luyện tập và kiểm thử (4 Cộng, 4 Trừ, 4 Nhân, 4 Chia) với đầy đủ `gold_anchor` và `silver_anchors` (B-02).
 6. **Bộ kiểm thử tự động & CI:** Unit tests, Integration tests chạy bằng lệnh `npm test` và quy trình GitHub Actions CI (B-08, B-09, B-10) — chi tiết kế hoạch xem tại [`artifacts/TEST_PLAN.md`](TEST_PLAN.md).
 
 ### 2.2. Ranh giới bất khả xâm phạm (Out-of-Scope / Non-goals / Boundary - Tiêu chí B-07 & B-11)
@@ -137,109 +151,156 @@ sequenceDiagram
 
 | Mã tiêu chí | Tên tiêu chí | Mô tả tóm tắt | Mức độ ưu tiên | Trạng thái thiết kế |
 |:---:|:---|:---|:---:|:---:|
-| **B-01** | Tích hợp luồng học có sẵn | Làm trực tiếp trên `lesson.html` / `exercise.html`, không tạo trang tách rời | Bắt buộc | ✅ Hoàn tất thiết kế |
-| **B-02** | Bộ fixture 16 câu hỏi mẫu | Đủ 16 câu synthetic: 4 Cộng, 4 Trừ, 4 Nhân, 4 Chia trong `data/seed.json` | Bắt buộc | ✅ Đã soạn thảo 16 câu |
-| **B-03** | Thuật toán ước lượng tất định | Đặc tả toán học chính xác, deterministic, test được, áp dụng cho cả 4 phép tính | Bắt buộc | ✅ Đã chốt công thức |
-| **B-04** | Bảo mật đáp án phía server | `GET .../questions` không trả về `correct_answer` hay khoảng ước lượng | Bắt buộc | ✅ Đã thiết kế API contract |
+| **B-01** | Tích hợp luồng học có sẵn | Làm trực tiếp trên `lesson.html` / `exercise.html`, thẻ tương tác 2 pha tích hợp bộ đếm ngược thích ứng 60s/pha | Bắt buộc | ✅ Hoàn tất thiết kế |
+| **B-02** | Bộ fixture 16 câu hỏi mẫu | Đủ 16 câu synthetic: 4 Cộng, 4 Trừ, 4 Nhân, 4 Chia trong `data/seed.json` kèm `gold_anchor` và `silver_anchors` | Bắt buộc | ✅ Đã soạn thảo 16 câu |
+| **B-03** | Thuật toán ước lượng tất định & phân cấp sư phạm | **Ước lượng là trọng tâm chiếm 70%** (55% Base + 15% Time Bonus), **Đặt tính đúng chiếm 30%** (25% Base + 5% Time Bonus); Phân cấp 5 bậc: Vàng (100%), Bạc (75%), Điền đúng (50%), Trong khoảng (35%), Ngoài khoảng (0%) | Bắt buộc | ✅ Đã chốt công thức |
+| **B-04** | Bảo mật đáp án phía server | `GET .../questions` không trả về `correct_answer`, `gold_anchor`, `silver_anchors` hay khoảng ước lượng | Bắt buộc | ✅ Đã thiết kế API contract |
 | **B-05** | Lưu trữ trạng thái bền vững | Lưu vào `attempts` & `progress` qua SQLite Transaction; F5 không mất điểm | Bắt buộc | ✅ Đã thiết kế Transaction |
-| **B-06** | Phản hồi UX 2 tầng | Hiển thị độc lập: Ước lượng hợp lý và Kết quả chính xác | Bắt buộc | ✅ Đã thiết kế Component UX |
+| **B-06** | Phản hồi UX 2 tầng & Phân tích sư phạm | Hiển thị độc lập: Ước lượng (kèm huy hiệu Vàng/Bạc, điểm Time Bonus, nhắc nhở/gợi ý) và Kết quả chính xác | Bắt buộc | ✅ Đã thiết kế Component UX |
 | **B-07** | Tuân thủ ranh giới bảo mật | Không sửa `server/auth.js`, route admin/teacher, session | Bắt buộc | ✅ Đã khoanh vùng cấm sửa |
-| **B-08** | Bộ kiểm thử tự động toàn diện | Bao phủ Normal, Boundary, Invalid inputs cho 4 phép tính | Bắt buộc | ✅ Đã lập Test Matrix |
+| **B-08** | Bộ kiểm thử tự động toàn diện | Bao phủ Normal, Boundary, Invalid inputs cho 4 phép tính, phân cấp điểm neo Vàng/Bạc/Exact-in-est và timer đếm ngược 60s | Bắt buộc | ✅ Đã lập Test Matrix |
 | **B-09** | Script `npm test` chuẩn | Chạy 100% pass từ clean checkout mà không cần can thiệp thủ công | Bắt buộc | ✅ Cấu hình Jest runner |
 | **B-10** | Cấu hình GitHub Actions CI | Tự động chạy `npm ci` và `npm test` trên mọi PR và push | Bắt buộc | ✅ Soạn thảo CI workflow |
 | **B-11** | An toàn dữ liệu & Bí mật | Không lộ secret, API key, PII; chỉ dùng tài khoản mẫu | Bắt buộc | ✅ Đã rà soát bảo mật |
-| **B-12** | Khả năng tiếp cận & Sư phạm | Điều hướng bằng bàn phím (Tab, Enter), thông điệp tiếng Việt thân thiện | Bắt buộc | ✅ Đã thiết kế A11y & Copy |
+| **B-12** | Khả năng tiếp cận, Bộ đếm thời gian 60s & Sư phạm | Bộ đếm ngược thời gian thích ứng tối đa 60s/pha, điều hướng bàn phím (Tab, Enter), thông điệp tiếng Việt thân thiện không gây áp lực | Bắt buộc | ✅ Đã thiết kế A11y, Timer & Copy |
 
 ---
 
 ### Chi tiết kịch bản kiểm thử hành vi (Gherkin BDD Scenarios)
 
-#### Kịch bản 1 (B-03 & B-06): Phép cộng 2 chữ số — Ước lượng hợp lý và tính đúng
+#### Kịch bản 1 (B-03 & B-06): Phép cộng 2 chữ số — Điểm neo Vàng, Đặt tính đúng & Thưởng tốc độ tối đa
 ```gherkin
-Scenario: Học sinh ước lượng hợp lý và tính đúng phép cộng 2 chữ số có nhớ
-  Given Đề bài là "38 + 49 = ?" với kết quả đúng là 87 và khoảng ước lượng hợp lý là [75, 100]
-  When Học sinh nhập ước lượng "90" (làm tròn 40 + 50)
-  And Học sinh nhập kết quả tính chính xác "87"
-  And Học sinh bấm nộp bài
-  Then Hệ thống đánh giá tầng 1: "Ước lượng hợp lý 🎉" (nhận 2.0/5.0 điểm)
-  And Hệ thống đánh giá tầng 2: "Kết quả chính xác 👏" (nhận 3.0/5.0 điểm)
-  And Tổng điểm nhận được cho câu hỏi là 5.0/5.0 điểm
+Scenario: Học sinh ước lượng đạt Điểm neo Vàng và tính đúng trong thời gian ngắn
+  Given Đề bài là "38 + 49 = ?" với kết quả đúng là 87, Điểm neo Vàng là 90 và khoảng ước lượng là [74, 100]
+  And Bộ đếm ngược thời gian Pha 1 đang chạy từ 60 giây
+  When Học sinh nhập ước lượng "90" (làm tròn 40 + 50) trong vòng 12 giây
+  And Học sinh bấm nộp Pha 1 (hoặc nhấn Enter)
+  Then Hệ thống đánh giá tầng 1: Điểm neo Vàng 🥇 (nhận trọn 55% Base ước lượng)
+  And Hệ thống cộng điểm thưởng tốc độ Pha 1: 15% * (60 - 12)/60 = 12% Time Bonus
+  And Tổng điểm nhận được ở Pha 1 là 67% (trên 70% tối đa của pha ước lượng)
+  When Bộ đếm ngược Pha 2 bắt đầu chạy từ 60 giây
+  And Học sinh nhập kết quả tính chính xác "87" trong vòng 15 giây và bấm nộp bài
+  Then Hệ thống đánh giá tầng 2: "Kết quả chính xác 👏" (nhận trọn 25% Base tính đúng)
+  And Hệ thống cộng điểm thưởng tốc độ Pha 2: 5% * (60 - 15)/60 = 3.75% Time Bonus
+  And Tổng điểm toàn bài cho câu hỏi đạt: 67% + 25% + 3.75% = 95.75% (gần như trọn vẹn điểm tối đa)
   And Hệ thống hiển thị lời giải: "Làm tròn 38 lên 40, làm tròn 49 lên 50. Nhẩm: 40 + 50 = 90. Đặt tính: 38 + 49 = 87."
 ```
 
-#### Kịch bản 2 (B-03 & B-06): Phép cộng 2 chữ số — Ước lượng chưa hợp lý nhưng tính đúng
+#### Kịch bản 2 (B-03 & B-06): Phép cộng 2 chữ số — Điểm neo Bạc (75% Base) và Đặt tính đúng
+```gherkin
+Scenario: Học sinh ước lượng đạt Điểm neo Bạc (làm tròn 1 toán hạng) và tính đúng
+  Given Đề bài là "54 + 27 = ?" với kết quả đúng là 81, Điểm neo Vàng là 80, Điểm neo Bạc là [77, 84, 90, 70]
+  When Học sinh nhập ước lượng "84" (học sinh chỉ làm tròn 27 lên 30 và nhẩm 54 + 30 = 84)
+  And Học sinh hoàn thành Pha 1 sau 24 giây
+  Then Hệ thống đánh giá tầng 1: Điểm neo Bạc 🥈 (nhận 75% * 55% = 41.25% Base ước lượng)
+  And Hệ thống cộng điểm thưởng tốc độ Pha 1: 15% * (60 - 24)/60 = 9% Time Bonus
+  And Lời khuyên tầng 1: "Rất tốt! Em đã ước lượng sát với điểm neo Bạc 🥈. Hãy thử làm tròn cả 54 thành 50 để nhẩm 50 + 30 = 80 nhanh hơn nữa nhé!"
+  When Học sinh nhập kết quả tính chính xác "81" ở Pha 2 và nộp bài sau 20 giây
+  Then Hệ thống đánh giá tầng 2: "Kết quả chính xác 👏" (nhận 25% Base + 3.33% Time Bonus)
+  And Tổng điểm nhận được là: 41.25% + 9% + 25% + 3.33% = 78.58%
+```
+
+#### Kịch bản 3 (B-03 & B-06): Nhập kết quả tính đúng vào ô ước lượng (Nhận 50% Base + Lời nhắc nhở sư phạm)
+```gherkin
+Scenario: Học sinh tính ra kết quả đúng rồi gõ thẳng vào ô ước lượng thay vì làm tròn nhẩm
+  Given Đề bài là "38 + 49 = ?" với kết quả đúng là 87
+  When Con trỏ ở ô nhập ước lượng (Pha 1), học sinh gõ "87" (trùng khít kết quả tính đúng A)
+  And Học sinh bấm xác nhận chuyển sang Pha 2
+  Then Hệ thống đánh giá tầng 1: Nhận 50% * 55% = 27.5% Base ước lượng
+  And Hệ thống hiển thị huy hiệu nhắc nhở: "⚠️ Chú ý cách làm"
+  And Lời nhắc nhở sư phạm hiển thị: "Em đã điền kết quả tính đúng vào ô ước lượng! Mục đích ước lượng là để em rèn kỹ năng làm tròn nhẩm nhanh trước khi đặt tính. Lần sau em hãy làm tròn các số nhé! 💡"
+  When Học sinh tiếp tục nhập kết quả chính xác "87" ở Pha 2
+  Then Hệ thống đánh giá tầng 2: "Kết quả chính xác 👏" (nhận 25% Base tính đúng)
+```
+
+#### Kịch bản 4 (B-03 & B-06): Ước lượng trong khoảng nhưng không theo quy tắc / gõ bừa (Nhận 35% Base + Gợi ý sư phạm)
+```gherkin
+Scenario: Học sinh gõ một số nằm trong khoảng hợp lý nhưng không theo quy tắc làm tròn
+  Given Đề bài là "38 + 49 = ?" với khoảng ước lượng hợp lý là [74, 100], Điểm neo Vàng là 90, Điểm neo Bạc là [88, 89, 70]
+  When Học sinh nhập ước lượng "83" (nằm trong [74, 100] nhưng không trùng điểm neo Vàng hay Bạc nào)
+  And Học sinh bấm nộp Pha 1
+  Then Hệ thống đánh giá tầng 1: Nhận 35% * 55% = 19.25% Base ước lượng
+  And Hệ thống hiển thị huy hiệu: "💡 Cần cải thiện quy tắc"
+  And Lời khuyên sư phạm: "Con số 83 khá gần, nhưng chưa theo quy tắc làm tròn tròn chục 🌱. Gợi ý: Hãy làm tròn 38 lên 40, 49 lên 50 rồi nhẩm 40 + 50 = 90 nhé!"
+  When Học sinh nhập kết quả tính chính xác "87" ở Pha 2
+  Then Hệ thống đánh giá tầng 2: "Kết quả chính xác 👏" (nhận trọn vẹn điểm phần tính đúng)
+```
+
+#### Kịch bản 5 (B-03 & B-06): Ước lượng ngoài khoảng (0% Base) nhưng Đặt tính đúng (30% Pha 2)
 ```gherkin
 Scenario: Học sinh ước lượng sai lệch lớn nhưng đặt tính ra kết quả đúng
   Given Đề bài là "54 + 27 = ?" với kết quả đúng là 81 và khoảng ước lượng hợp lý là [70, 95]
-  When Học sinh nhập ước lượng "30" (quá xa kết quả đúng, sai số > 15% và ngoài khoảng neo)
-  And Học sinh nhập kết quả tính chính xác "81"
-  And Học sinh bấm nộp bài
-  Then Hệ thống đánh giá tầng 1: "Ước lượng chưa sát 🌱" (nhận 0.0/5.0 điểm phần ước lượng)
-  And Lời khuyên tầng 1: "Em nên làm tròn 54 xuống 50 và 27 lên 30 để nhẩm 50 + 30 = 80 nhé!"
-  And Hệ thống đánh giá tầng 2: "Kết quả chính xác 👏" (nhận 3.0/5.0 điểm phần tính đúng)
-  And Tổng điểm nhận được cho câu hỏi là 3.0/5.0 điểm
+  When Học sinh nhập ước lượng "30" (quá xa kết quả đúng, sai số lớn và ngoài khoảng [70, 95])
+  And Học sinh bấm chuyển sang Pha 2
+  Then Hệ thống đánh giá tầng 1: Nhận 0% điểm phần ước lượng (0% Base, 0% Time Bonus)
+  And Lời khuyên tầng 1: "Ước lượng 30 chưa hợp lý 🌱. Em nên làm tròn 54 xuống 50 và 27 lên 30 để nhẩm 50 + 30 = 80 nhé!"
+  When Học sinh nhập kết quả tính chính xác "81" ở Pha 2 và bấm nộp bài
+  Then Hệ thống đánh giá tầng 2: "Kết quả chính xác 👏" (nhận trọn điểm phần tính đúng gồm Base và Time Bonus nếu có)
+  And Tổng điểm nhận được phản ánh rõ: học sinh làm đúng phép tính (30%) nhưng chưa đạt kỹ năng ước lượng
 ```
 
-#### Kịch bản 3 (B-03 & B-06): Phép trừ 2 chữ số — Ước lượng hợp lý và tính đúng
+#### Kịch bản 6 (B-12): Cơ chế đếm ngược thời gian thích ứng 60 giây & Xử lý hết giờ (Timeout)
+```gherkin
+Scenario: Bộ đếm ngược thời gian 60 giây đếm hết giờ ở Pha 1 tự động khóa và chuyển sang Pha 2
+  Given Học sinh đang làm câu hỏi ước lượng số 1 ở Pha 1
+  And Đồng hồ đếm ngược từ 60 giây và hiển thị thanh thời gian trực quan
+  When Đồng hồ đếm về dưới 10 giây
+  Then Giao diện chuyển viền cảnh báo màu cam nhẹ nhàng, không phát âm thanh giật mình
+  When Đồng hồ đếm về 0 giây (hết 60 giây) và học sinh đã điền "90" vào ô ước lượng nhưng chưa bấm nộp
+  Then Hệ thống tự động khóa ô nhập ước lượng
+  And Hệ thống tự động kích hoạt chuyển sang Pha 2 (Đặt tính đúng)
+  And Giá trị "90" đã nhập được ghi nhận và chấm điểm Base bình thường (nhận Điểm neo Vàng 55%)
+  And Điểm thưởng tốc độ Time Bonus của Pha 1 là 0%
+  And Đồng hồ đếm ngược của Pha 2 tự động khởi tạo lại từ 60 giây
+```
+
+#### Kịch bản 7 (B-03 & B-06): Phép trừ 2 chữ số — Điểm neo Vàng và Tính đúng
 ```gherkin
 Scenario: Học sinh ước lượng hợp lý và tính đúng phép trừ 2 chữ số có nhớ
-  Given Đề bài là "72 - 38 = ?" với kết quả đúng là 34 và khoảng ước lượng hợp lý là [25, 42]
+  Given Đề bài là "72 - 38 = ?" với kết quả đúng là 34, Điểm neo Vàng là 30 và khoảng ước lượng là [25, 42]
   When Học sinh nhập ước lượng "30" (làm tròn 70 - 40)
   And Học sinh nhập kết quả tính chính xác "34"
   And Học sinh bấm nộp bài
-  Then Hệ thống đánh giá tầng 1: "Ước lượng hợp lý 🎉"
+  Then Hệ thống đánh giá tầng 1: Đạt Điểm neo Vàng 🥇 (nhận tối đa điểm ước lượng kèm thưởng tốc độ)
   And Hệ thống đánh giá tầng 2: "Kết quả chính xác 👏"
-  And Tổng điểm nhận được là trọn vẹn điểm số câu hỏi
   And Hệ thống hiển thị lời giải: "Làm tròn 72 xuống 70, 38 lên 40. Nhẩm: 70 - 40 = 30. Đặt tính: 72 - 38 = 34."
 ```
 
-#### Kịch bản 4 (B-03 & B-06): Phép trừ 2 chữ số — Ước lượng hợp lý nhưng tính sai do quên nhớ
-```gherkin
-Scenario: Học sinh ước lượng nhẩm đúng nhưng đặt tính nhầm do quên nhớ
-  Given Đề bài là "85 - 29 = ?" với kết quả đúng là 56 và khoảng ước lượng hợp lý là [47, 68]
-  When Học sinh nhập ước lượng "60" (làm tròn 90 - 30)
-  And Học sinh nhập kết quả tính "66" (học sinh lấy 15-9=6 nhớ 1 nhưng ở hàng chục lại lấy 8-2=6 quên trừ 1)
-  And Học sinh bấm nộp bài
-  Then Hệ thống đánh giá tầng 1: "Ước lượng hợp lý 🎉" (nhận điểm phần ước lượng)
-  And Hệ thống đánh giá tầng 2: "Kết quả chưa chính xác ✏️" (không nhận điểm phần tính đúng)
-  And Hệ thống hiển thị hướng dẫn: "Kết quả tính chính xác là 56. Em nhớ trừ thêm 1 đã mượn ở hàng chục nhé!"
-```
-
-#### Kịch bản 5 (B-03 & B-06): Phép nhân — Ước lượng hợp lý và tính đúng
+#### Kịch bản 8 (B-03 & B-06): Phép nhân — Điểm neo Vàng và Tính đúng
 ```gherkin
 Scenario: Học sinh ước lượng và nhân đúng số có 2 chữ số với số có 1 chữ số
-  Given Đề bài là "29 × 3 = ?" với kết quả đúng là 87 và khoảng ước lượng hợp lý là [75, 105]
+  Given Đề bài là "29 × 3 = ?" với kết quả đúng là 87 và Điểm neo Vàng là 90
   When Học sinh nhập ước lượng "90" (làm tròn 29 lên 30, nhẩm 30 × 3 = 90)
   And Học sinh nhập kết quả tính chính xác "87"
   And Học sinh bấm nộp bài
-  Then Hệ thống đánh giá tầng 1: "Ước lượng hợp lý 🎉"
+  Then Hệ thống đánh giá tầng 1: Điểm neo Vàng 🥇 (nhận tối đa điểm ước lượng)
   And Hệ thống đánh giá tầng 2: "Kết quả chính xác 👏"
   And Lời khen hiển thị: "Em ước lượng rất sát và tính toán chuẩn xác!"
 ```
 
-#### Kịch bản 6 (B-03 & B-06): Phép chia — Ước lượng hợp lý và tính đúng
+#### Kịch bản 9 (B-03 & B-06): Phép chia — Điểm neo Vàng và Tính đúng
 ```gherkin
 Scenario: Học sinh làm tròn số bị chia để ước lượng và chia đúng
-  Given Đề bài là "84 : 4 = ?" với kết quả đúng là 21 và khoảng ước lượng hợp lý là [17, 26]
+  Given Đề bài là "84 : 4 = ?" với kết quả đúng là 21 và Điểm neo Vàng là 20
   When Học sinh nhập ước lượng "20" (làm tròn 84 xuống 80, nhẩm 80 : 4 = 20)
   And Học sinh nhập kết quả tính chính xác "21"
   And Học sinh bấm nộp bài
-  Then Hệ thống đánh giá tầng 1: "Ước lượng hợp lý 🎉"
+  Then Hệ thống đánh giá tầng 1: Điểm neo Vàng 🥇
   And Hệ thống đánh giá tầng 2: "Kết quả chính xác 👏"
   And Lời giải thích hiển thị: "Làm tròn 84 thành 80. Ta nhẩm 80 : 4 = 20. Đặt tính chia: 84 : 4 = 21."
 ```
 
-#### Kịch bản 7 (B-04): Bảo mật đề thi trên Client (Không để lộ đáp án)
+#### Kịch bản 10 (B-04): Bảo mật đề thi trên Client (Không để lộ đáp án & điểm neo)
 ```gherkin
 Scenario: Client gọi API lấy danh sách câu hỏi trước khi làm bài
   Given Học sinh đã đăng nhập thành công với vai trò "student"
   When Client gửi HTTP GET request tới "/api/question-sets/uoc-luong-toan-lop-3/questions"
   Then Mã phản hồi HTTP trả về là 200 OK
   And Payload JSON chứa danh sách câu hỏi với các trường: "id", "type", "prompt", "points", "category"
-  And Payload JSON TUYỆT ĐỐI KHÔNG chứa trường "correct_answer", "exact", "estimate_min", "estimate_max", "rounded_anchor"
+  And Payload JSON TUYỆT ĐỐI KHÔNG chứa trường "correct_answer", "exact", "gold_anchor", "silver_anchors", "estimate_min", "estimate_max"
 ```
 
-#### Kịch bản 8 (B-05): Lưu trữ trạng thái bền vững & Phục hồi sau F5 (Reload)
+#### Kịch bản 11 (B-05): Lưu trữ trạng thái bền vững & Phục hồi sau F5 (Reload)
 ```gherkin
 Scenario: Học sinh hoàn thành bài làm và tải lại trang
   Given Học sinh hoàn thành bài kiểm tra ước lượng với điểm số 90%
@@ -249,15 +310,15 @@ Scenario: Học sinh hoàn thành bài làm và tải lại trang
   And Số sao thưởng đã nhận được bảo toàn, không bị mất và không bị cộng dồn trùng lặp
 ```
 
-#### Kịch bản 9 (B-12): Khả năng tiếp cận bằng bàn phím (Accessibility)
+#### Kịch bản 12 (B-12): Khả năng tiếp cận bằng bàn phím (Accessibility)
 ```gherkin
 Scenario: Học sinh thao tác hoàn toàn bằng bàn phím không dùng chuột
-  Given Học sinh đang làm câu hỏi ước lượng số 1
+  Given Học sinh đang làm câu hỏi ước lượng ở Pha 1
   When Con trỏ đang ở ô nhập "Ước lượng", học sinh gõ "90"
-  And Học sinh nhấn phím Tab
-  Then Con trỏ tự động chuyển tiêu điểm (focus) sang ô nhập "Kết quả chính xác"
+  And Học sinh nhấn phím Enter (hoặc Tab sang nút chuyển pha)
+  Then Pha 1 hoàn thành và tiêu điểm (focus) tự động chuyển sang ô nhập "Kết quả chính xác" ở Pha 2
   When Học sinh gõ "87" và nhấn phím Enter
-  Then Hệ thống tự động chuyển sang câu tiếp theo hoặc kích hoạt nút nộp bài
+  Then Hệ thống tự động chuyển sang câu tiếp theo hoặc kích hoạt nộp bài
 ```
 
 ---
@@ -266,18 +327,18 @@ Scenario: Học sinh thao tác hoàn toàn bằng bàn phím không dùng chuộ
 
 | Yêu cầu nghiệp vụ | Mã AC | Thiết kế kỹ thuật liên quan | Module mã nguồn chịu trách nhiệm | Test Suite kiểm chứng |
 |:---|:---:|:---|:---|:---|
-| Không tách riêng trang demo, dùng trực tiếp trang có sẵn | **B-01** | ADR-04 (Tích hợp UX) | `public/lesson.html`, `public/assets/js/pages/lesson.js` | Integration Test: UI Flow Test |
-| Bộ 16 câu hỏi mẫu chuẩn (4 Cộng, 4 Trừ, 4 Nhân, 4 Chia) | **B-02** | ADR-02 (Schema & Seed) | `data/seed.json`, `server/db.js` | Unit Test: Seed Integrity & Range Test |
-| Thuật toán ước lượng tất định, không runtime AI | **B-03** | ADR-01 (Deterministic Scoring) | `server/scoring.js` | Unit Test: `scoring.test.js` (Normal, Boundary, Invalid) |
-| Bảo mật chống lộ đáp án phía Client | **B-04** | ADR-03 (API Redaction) | `server/api.js` (`GET .../questions`) | Integration Test: `api_security.test.js` |
+| Không tách riêng trang demo, dùng trực tiếp trang có sẵn; tích hợp thẻ 2 pha và timer 60s/pha | **B-01** | ADR-04 (Tích hợp UX) | `public/lesson.html`, `public/assets/js/pages/lesson.js` | Integration Test: UI Flow & Phase Transition Test |
+| Bộ 16 câu hỏi mẫu chuẩn (4 Cộng, 4 Trừ, 4 Nhân, 4 Chia) kèm `gold_anchor` & `silver_anchors` | **B-02** | ADR-02 (Schema & Seed) | `data/seed.json`, `server/db.js` | Unit Test: Seed Integrity & Anchor Hierarchy Test |
+| Thuật toán ước lượng tất định 70/30, phân cấp 5 bậc (Vàng/Bạc/Exact-in-Est) & thưởng tốc độ | **B-03** | ADR-01 (Deterministic Scoring) | `server/scoring.js` | Unit Test: `scoring.test.js` (Hierarchy, Anchors, TimeBonus) |
+| Bảo mật chống lộ đáp án, điểm neo và khoảng ước lượng phía Client | **B-04** | ADR-03 (API Redaction) | `server/api.js` (`GET .../questions`) | Integration Test: `api_security.test.js` |
 | Lưu trữ bền vững DB SQLite & Phục hồi sau F5 | **B-05** | ADR-03 (Persistence Transaction) | `server/db.js`, `server/api.js` (`POST /submissions`) | Integration Test: `api_submissions.test.js` |
-| Phản hồi sư phạm trực quan 2 tầng độc lập | **B-06** | ADR-04 (Two-Tier Feedback) | `public/assets/js/pages/lesson.js`, `server/scoring.js` | Integration Test: Feedback Display Test |
+| Phản hồi sư phạm trực quan 2 tầng: Huy hiệu Vàng/Bạc, Time Bonus, nhắc nhở & gợi ý | **B-06** | ADR-04 (Two-Tier Feedback) | `public/assets/js/pages/lesson.js`, `server/scoring.js` | Integration Test: Feedback & Badge Display Test |
 | Tuân thủ ranh giới code, giữ nguyên `server/auth.js` | **B-07** | ADR-02, ADR-03 (Boundaries) | `server/auth.js` (không chạm) | Git Diff Audit & Security Checklist |
-| Bộ kiểm thử tự động toàn diện (Normal, Boundary, Invalid) | **B-08** | ADR-05 (Test Strategy) & [`artifacts/TEST_PLAN.md`](TEST_PLAN.md) | `tests/unit/scoring.test.js`, `tests/integration/` | Automated Jest Suite (Coverage $\ge 90\%$) |
+| Bộ kiểm thử tự động toàn diện (Normal, Boundary, Invalid, 5 bậc phân cấp, Timer 60s) | **B-08** | ADR-05 (Test Strategy) & [`artifacts/TEST_PLAN.md`](TEST_PLAN.md) | `tests/unit/scoring.test.js`, `tests/integration/` | Automated Jest Suite (Coverage $\ge 90\%$) |
 | Lệnh `npm test` độc lập, pass 100% từ clean checkout | **B-09** | ADR-05 (Test Runner) | `package.json` | Clean Checkout Runner Test |
 | CI Pipeline tự động trên GitHub Actions | **B-10** | ADR-05 (CI Pipeline) | `.github/workflows/ci.yml` | GitHub Actions Runner |
 | Không lộ bí mật, API key, dữ liệu cá nhân (PII) | **B-11** | ADR-03 (Secret Hygiene) | Toàn bộ repo, `.gitignore` | Security & Privacy Audit Script |
-| Hỗ trợ phím Tab/Enter & Thông điệp thân thiện lớp 3 | **B-12** | ADR-04 (Accessibility) | `public/assets/js/pages/lesson.js` | A11y Audit & Keyboard Navigation Test |
+| Bộ đếm thời gian 60s thích ứng, phím Tab/Enter & Thông điệp thân thiện không gây áp lực | **B-12** | ADR-04 (Accessibility & Timer) | `public/assets/js/pages/lesson.js` | A11y & Timer Countdown Test |
 
 ---
 

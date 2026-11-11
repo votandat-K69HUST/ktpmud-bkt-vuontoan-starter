@@ -84,7 +84,7 @@ Ghi câu hỏi kỹ thuật nhóm muốn GV giải đáp trực tiếp (GV sẽ 
 
 ### Nguồn trích xuất thông tin có sẵn:
 1. **Thông tin yêu cầu & AC:** Lấy từ [artifacts/REQUIREMENTS.md](file:///D:/Hackathon_KTPM/ktpmud-bkt-vuontoan-starter/artifacts/REQUIREMENTS.md) đã hoàn thành hôm 08/11.
-2. **Quyết định kiến trúc & bằng chứng:** Lấy từ [artifacts/DECISIONS.md](file:///D:/Hackathon_KTPM/ktpmud-bkt-vuontoan-starter/artifacts/DECISIONS.md) và commit hash `a17368e`.
+2. **Quyết định kiến trúc & bằng chứng:** Lấy từ [artifacts/DECISIONS.md](file:///D:/Hackathon_KTPM/ktpmud-bkt-vuontoan-starter/artifacts/DECISIONS.md), [artifacts/TEST_PLAN.md](file:///D:/Hackathon_KTPM/ktpmud-bkt-vuontoan-starter/artifacts/TEST_PLAN.md) và commit hash `0c18013`.
 3. **Bộ câu hỏi mẫu:** Lấy từ [artifacts/SEED_FIXTURES.md](file:///D:/Hackathon_KTPM/ktpmud-bkt-vuontoan-starter/artifacts/SEED_FIXTURES.md).
 4. **Báo cáo scope:** Lấy từ [artifacts/CHECKPOINT_1_REPORT.md](file:///D:/Hackathon_KTPM/ktpmud-bkt-vuontoan-starter/artifacts/CHECKPOINT_1_REPORT.md).
 
@@ -104,7 +104,7 @@ Truy cập đúng địa chỉ:
 ```text
 Nhóm: 173820_n04 · Track: B
 Fork: https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter
-Commit PC-1: a17368ebb690b96a9c1657848a314151e2b4fab0
+Commit PC-1: 0c1801341eb8b37828a574a7ce9a7841231aabe4
 ```
 
 > [!WARNING]
@@ -120,7 +120,7 @@ Khi đến lượt nhóm stand-up với GV/TA:
 
 ### Cấu trúc 3 câu trả lời mẫu:
 1. **Đã xong gì (kèm bằng chứng):**
-   > *"Thưa Thầy/Cô, nhóm đã hoàn thành toàn bộ Giai đoạn M1 và mở rộng bài toán bao phủ cả 4 phép tính (+, -, ×, :) bám sát SGK Toán 3 Kết nối tri thức: phân tích 12 tiêu chí AC, chốt 5 bản quyết định kiến trúc ADR (thuật toán ước lượng tất định kết hợp sai số $\le 15\%$ và điểm neo hàng chục, schema JSON không làm đổi cấu trúc SQLite cũ), và bộ 16 câu hỏi synthetic. Tất cả đã push lên GitHub ở commit `a17368e`."*
+   > *"Thưa Thầy/Cô, nhóm đã hoàn thành toàn bộ Giai đoạn M1 và mở rộng bài toán bao phủ cả 4 phép tính (+, -, ×, :) bám sát SGK Toán 3 Kết nối tri thức: phân tích 12 tiêu chí AC, chốt 5 bản quyết định kiến trúc ADR (thuật toán ước lượng tất định kết hợp sai số $\le 15\%$ và điểm neo hàng chục, schema JSON không làm đổi cấu trúc SQLite cũ), kế hoạch kiểm thử tự động toàn diện TEST_PLAN.md, và bộ 16 câu hỏi synthetic. Tất cả đã push lên GitHub ở commit `0c18013`."*
 2. **Sắp làm gì (Giai đoạn M2):**
    > *"Hiện tại nhóm đang hiện thực module `server/scoring.js`, mở rộng route `POST /api/submissions` và dựng UI thẻ 2 pha trên `lesson.html` để hoàn thành Vertical Slice chạy được trước Checkpoint 2 (15/11)."*
 3. **Đang vướng gì:**

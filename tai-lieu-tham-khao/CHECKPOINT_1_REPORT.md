@@ -30,8 +30,8 @@ Nhóm đã hoàn thành 100% mục tiêu của Giai đoạn M1 theo đúng hư�
 - [x] **Hồ sơ phân tích & kiến trúc:**
   - `artifacts/REQUIREMENTS.md`: Bám sát 12 Acceptance Criteria (B-01 đến B-12), ma trận truy vết và kịch bản BDD Gherkin.
   - `artifacts/DECISIONS.md`: 5 bản ADR chi tiết (Thuật toán ước lượng tất định 4 phép tính, Schema DB phi phá vỡ lưu JSON, API Contract bảo mật, UX 2 tầng, Chiến lược Test/CI).
-  - `artifacts/SEED_FIXTURES.md`: Bộ câu hỏi synthetic phủ đều 4 phép tính (cộng, trừ 2 chữ số, nhân, chia) kèm giải thích sư phạm rõ ràng.
-  - `artifacts/AI_USE.md`: Nhật ký sử dụng AI có truy vết và kiểm chứng của từng thành viên.
+  - `tai-lieu-tham-khao/SEED_FIXTURES.md`: Bộ câu hỏi synthetic phủ đều 4 phép tính (cộng, trừ 2 chữ số, nhân, chia) kèm giải thích sư phạm rõ ràng.
+  - `tai-lieu-tham-khao/AI_USE.md`: Nhật ký sử dụng AI có truy vết và kiểm chứng của từng thành viên.
 
 ---
 
