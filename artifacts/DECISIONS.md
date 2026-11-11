@@ -517,11 +517,14 @@ Sau khi nộp bài, mỗi thẻ câu hỏi hiển thị 2 khối nhận xét đ�
 
 ### 1. Trạng thái: `ACCEPTED` (Đã phê duyệt)
 
-### 2. Công nghệ kiểm thử
+### 2. Công nghệ kiểm thử & Tài liệu kế hoạch chi tiết
 - Sử dụng **Jest 29** (kèm `supertest` để kiểm thử HTTP API trên Express).
 - Cấu hình chạy nhanh, không cần build step, tương thích Node 20 LTS.
+- **Tài liệu hiện thực hóa chi tiết:** Toàn bộ kế hoạch kiểm thử tự động, bảng ma trận ca kiểm thử (Normal, Boundary, Invalid) cho cả 4 phép tính, kịch bản integration tests và tiêu chí nghiệm thu A11y được đặc tả chi tiết tại tài liệu [`artifacts/TEST_PLAN.md`](TEST_PLAN.md).
 
 ### 3. Ma trận kiểm thử tự động (Test Matrix) bao phủ CẢ 4 PHÉP TÍNH
+
+> 📄 **Hiện thực hóa ma trận kiểm thử:** Bảng ca kiểm thử chi tiết từng giá trị đầu vào, điểm neo sư phạm SGK Toán 3, kỳ vọng đầu ra và kịch bản bảo mật/giao dịch được đặc tả đầy đủ trong tài liệu [artifacts/TEST_PLAN.md](file:///D:/Hackathon_KTPM/ktpmud-bkt-vuontoan-starter/artifacts/TEST_PLAN.md) (hoặc [`artifacts/TEST_PLAN.md`](TEST_PLAN.md)).
 
 ```
 tests/

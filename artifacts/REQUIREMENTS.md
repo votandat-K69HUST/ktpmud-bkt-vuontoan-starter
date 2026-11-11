@@ -87,7 +87,7 @@ Quy trình sư phạm 2 bước chuẩn hóa:
    - Hoạt động trực tiếp trên trang làm bài chung `public/lesson.html` và phiếu luyện tập `public/exercise.html` (thỏa mãn B-01).
    - Lưu điểm, số sao và số câu đúng vào bảng `attempts` và `progress` trên SQLite; tải lại trang (F5) không mất điểm (B-05).
 5. **Bộ 16 câu hỏi mẫu synthetic:** Bổ sung vào `data/seed.json` phục vụ luyện tập và kiểm thử (4 Cộng, 4 Trừ, 4 Nhân, 4 Chia) (B-02).
-6. **Bộ kiểm thử tự động & CI:** Unit tests, Integration tests chạy bằng lệnh `npm test` và quy trình GitHub Actions CI (B-08, B-09, B-10).
+6. **Bộ kiểm thử tự động & CI:** Unit tests, Integration tests chạy bằng lệnh `npm test` và quy trình GitHub Actions CI (B-08, B-09, B-10) — chi tiết kế hoạch xem tại [`artifacts/TEST_PLAN.md`](TEST_PLAN.md).
 
 ### 2.2. Ranh giới bất khả xâm phạm (Out-of-Scope / Non-goals / Boundary - Tiêu chí B-07 & B-11)
 - ❌ **CẤM SỬA:** Toàn bộ file `server/auth.js` (cơ chế xác thực, session token, băm mật khẩu bcrypt).
@@ -273,7 +273,7 @@ Scenario: Học sinh thao tác hoàn toàn bằng bàn phím không dùng chuộ
 | Lưu trữ bền vững DB SQLite & Phục hồi sau F5 | **B-05** | ADR-03 (Persistence Transaction) | `server/db.js`, `server/api.js` (`POST /submissions`) | Integration Test: `api_submissions.test.js` |
 | Phản hồi sư phạm trực quan 2 tầng độc lập | **B-06** | ADR-04 (Two-Tier Feedback) | `public/assets/js/pages/lesson.js`, `server/scoring.js` | Integration Test: Feedback Display Test |
 | Tuân thủ ranh giới code, giữ nguyên `server/auth.js` | **B-07** | ADR-02, ADR-03 (Boundaries) | `server/auth.js` (không chạm) | Git Diff Audit & Security Checklist |
-| Bộ kiểm thử tự động toàn diện (Normal, Boundary, Invalid) | **B-08** | ADR-05 (Test Strategy) | `tests/unit/scoring.test.js`, `tests/integration/` | Automated Jest Suite (Coverage $\ge 90\%$) |
+| Bộ kiểm thử tự động toàn diện (Normal, Boundary, Invalid) | **B-08** | ADR-05 (Test Strategy) & [`artifacts/TEST_PLAN.md`](TEST_PLAN.md) | `tests/unit/scoring.test.js`, `tests/integration/` | Automated Jest Suite (Coverage $\ge 90\%$) |
 | Lệnh `npm test` độc lập, pass 100% từ clean checkout | **B-09** | ADR-05 (Test Runner) | `package.json` | Clean Checkout Runner Test |
 | CI Pipeline tự động trên GitHub Actions | **B-10** | ADR-05 (CI Pipeline) | `.github/workflows/ci.yml` | GitHub Actions Runner |
 | Không lộ bí mật, API key, dữ liệu cá nhân (PII) | **B-11** | ADR-03 (Secret Hygiene) | Toàn bộ repo, `.gitignore` | Security & Privacy Audit Script |
@@ -313,4 +313,17 @@ Dựa trên chuẩn kiến thức kỹ năng môn Toán lớp 3 — Bộ sách K
   + Chia nhẩm số tròn chục cho số chia để tìm thương ước lượng ($80 : 4 = 20$, $180 : 6 = 30$, $240 : 8 = 30$).
   + Đối với phép chia trong bảng cửu chương ($48 : 6$), điểm neo chính là thương trong bảng cửu chương ($48 : 6 = 8$).
 
-Toàn bộ 16 câu hỏi mẫu được chuẩn hóa chi tiết cả về mặt kỹ thuật JSON lẫn phương pháp sư phạm trong tài liệu [artifacts/SEED_FIXTURES.md](file:///D:/Hackathon_KTPM/ktpmud-bkt-vuontoan-starter/artifacts/SEED_FIXTURES.md).
+Toàn bộ 16 câu hỏi mẫu được chuẩn hóa chi tiết cả về mặt kỹ thuật JSON lẫn phương pháp sư phạm trong tài liệu [tai-lieu-tham-khao/SEED_FIXTURES.md](file:///D:/Hackathon_KTPM/ktpmud-bkt-vuontoan-starter/tai-lieu-tham-khao/SEED_FIXTURES.md).
+
+### 6.5. Chiến lược kiểm thử và nghiệm thu (Testing & Acceptance Strategy)
+
+Nhằm liên kết chặt chẽ các yêu cầu đặc tả (SRS) và kịch bản hành vi (BDD Scenarios) với kế hoạch kiểm thử tự động, toàn bộ chiến lược kiểm thử, ma trận ca kiểm thử (Unit & Integration Test) và tiêu chí nghiệm thu chất lượng phần mềm được hiện thực hóa chi tiết trong tài liệu:
+
+👉 **[artifacts/TEST_PLAN.md](file:///D:/Hackathon_KTPM/ktpmud-bkt-vuontoan-starter/artifacts/TEST_PLAN.md)** (hoặc link repository: [`artifacts/TEST_PLAN.md`](TEST_PLAN.md))
+
+Tài liệu `TEST_PLAN.md` định nghĩa kế hoạch hành động và tiêu chuẩn nghiệm thu kỹ thuật:
+1. **Kiểm thử logic ước lượng 4 phép tính (Tiêu chí B-03, B-08):** Ma trận ca kiểm thử Normal, Boundary (ngưỡng dung sai $\Delta_{min}$, điểm neo $E_{anchor}$), và Invalid inputs trên module độc lập `server/scoring.js`.
+2. **Kiểm thử bảo mật Client (Tiêu chí B-04):** Endpoint `GET /api/question-sets/:id/questions` và `GET /api/lessons` tuyệt đối không để lộ đáp án `correct_answer` và khoảng ước lượng về trình duyệt.
+3. **Kiểm thử giao dịch và chấm 2 tầng (Tiêu chí B-05, B-06):** Endpoint `POST /api/submissions` xử lý transaction SQLite nguyên tử, lưu điểm và phục hồi trạng thái sau F5.
+4. **Kiểm thử khả năng tiếp cận (Tiêu chí B-12):** Quy trình điều hướng bàn phím Tab/Enter mượt mà không dùng chuột, focus ring tương phản cao cho học sinh lớp 3.
+5. **Quy trình tích hợp liên tục CI (Tiêu chí B-09, B-10):** Chạy tự động `npm test` qua GitHub Actions trên Node.js 20 LTS, đảm bảo độ bao phủ kiểm thử cao và không có lỗi hồi quy (regression).

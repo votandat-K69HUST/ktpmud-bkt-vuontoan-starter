@@ -35,25 +35,39 @@ Lần chạy đầu, server tự tạo `data/vuon-toan.db` và nạp dữ liệu
 > Khi đưa lên Internet thật: đổi mật khẩu các tài khoản mẫu, và đặt biến môi trường
 > `SESSION_SECRET` bằng một chuỗi bí mật dài trước khi chạy `npm start`.
 
-## 2. Cấu trúc thư mục
+## 2. Cấu trúc thư mục & Hồ sơ tài liệu dự án
 
 ```
 vuon-toan-lop-3/
+├─ artifacts/                 # Hồ sơ kỹ thuật cốt lõi Track B
+│  ├─ REQUIREMENTS.md         # Đặc tả yêu cầu phần mềm, 12 tiêu chí AC & BDD scenarios
+│  ├─ DECISIONS.md            # Kiến trúc hệ thống, 5 bản ghi quyết định thiết kế (ADRs)
+│  └─ TEST_PLAN.md            # Kế hoạch kiểm thử tự động, ma trận ca test Jest 29 & Supertest
+├─ progress/                  # Nhật ký tiến độ thi đấu
+│  └─ PROGRESS.md             # Báo cáo tiến độ chi tiết theo mốc Checkpoint (PC-1, PC-2)
+├─ tai-lieu-tham-khao/        # Tài liệu tham khảo, hướng dẫn & hồ sơ bổ trợ
+│  ├─ KTPMUD_Hack_Marathon_2026_Track2_Huong_Dan.md # Cẩm nang & thể lệ Hackathon Track B
+│  ├─ CHECKPOINT_1_REPORT.md  # Báo cáo Scope Gate đã nghiệm thu tại Checkpoint 1
+│  ├─ SEED_FIXTURES.md        # Bộ đặc tả 16 câu hỏi mẫu synthetic phủ 4 phép tính
+│  ├─ AI_USE.md               # Nhật ký sử dụng AI minh bạch & kiểm duyệt đề xuất
+│  ├─ HUONG_DAN_KIEM_TRA_TIEN_DO_PC1_11_11.md # Hướng dẫn kiểm tra tiến độ PC-1
+│  └─ README.md               # Mục lục tra cứu tài liệu tham khảo nội bộ
 ├─ public/                    # Giao diện (server phục vụ thư mục này)
 │  ├─ *.html                  # Mỗi trang 1 file, CHỈ chứa nội dung trang
+│  ├─ lesson.html             # Trang làm bài chung cho bộ đề giáo viên tự tạo
 │  └─ assets/
 │     ├─ css/app.css          # CSS nền dùng chung (trước đây lặp trong 11 file)
 │     └─ js/
 │        ├─ tailwind.config.js  # Cấu hình Tailwind dùng chung 1 chỗ duy nhất
 │        ├─ core/  (api.js = gọi API, app.js = đăng nhập + nối link, game-score.js = lưu điểm game)
 │        ├─ components/ (navbar.js, sidebar.js=bản đồ link, footer.js dùng chung)
-│        └─ pages/  (logic riêng từng trang: login.js, exercise.js, exam.js,...)
-├─ public/lesson.html       # Trang làm bài chung cho bộ đề giáo viên tự tạo
+│        └─ pages/  (logic riêng từng trang: login.js, exercise.js, exam.js, lesson.js...)
 ├─ server/
 │  ├─ index.js   # Điểm vào: API /api/* + phục vụ giao diện
 │  ├─ db.js      # Tạo bảng + nạp dữ liệu mẫu vào SQLite
 │  ├─ auth.js    # Cookie đăng nhập httpOnly, băm mật khẩu bcrypt
-│  └─ api.js     # Toàn bộ API (đăng nhập, bài học, nộp bài, giáo viên...)
+│  ├─ api.js     # Toàn bộ API (đăng nhập, bài học, nộp bài, giáo viên...)
+│  └─ scoring.js # Module chấm điểm và ước lượng tất định 4 phép tính
 ├─ data/
 │  ├─ seed.json      # DỮ LIỆU GỐC: tài khoản mẫu, bài học, câu hỏi
 │  └─ vuon-toan.db   # CSDL SQLite (tự sinh khi chạy; sao lưu = chép file này)
@@ -61,6 +75,23 @@ vuon-toan-lop-3/
 ├─ original-backup/  # NGUYÊN BẢN code cũ trước khi sửa (để đối chiếu/khôi phục)
 └─ HUONG-DAN-THEM-BAI.md  # Cách thêm bài học/câu hỏi mới
 ```
+
+### 2.1. Hồ sơ tài liệu kỹ thuật & Tham khảo
+
+- **Thư mục [`artifacts/`](artifacts/):** Chứa 3 tài liệu kỹ thuật cốt lõi của dự án (Track B):
+  1. [`REQUIREMENTS.md`](artifacts/REQUIREMENTS.md): Đặc tả yêu cầu phần mềm (SRS), phân tích sư phạm Toán 3 Kết nối tri thức, ma trận 12 tiêu chí Acceptance Criteria (B-01 đến B-12) và 9 kịch bản kiểm thử hành vi BDD (Gherkin).
+  2. [`DECISIONS.md`](artifacts/DECISIONS.md): 5 bản ghi quyết định kiến trúc (ADR-01 đến ADR-05) bao gồm mô hình toán học tất định cho cả 4 phép tính (+, -, ×, :), thiết kế schema SQLite tương thích ngược, bảo mật dữ liệu đề thi trên client, thiết kế trải nghiệm UX 2 pha hỗ trợ A11y, và chiến lược kiểm thử Jest 29 / Supertest.
+  3. [`TEST_PLAN.md`](artifacts/TEST_PLAN.md): Kế hoạch kiểm thử tự động toàn diện và bảo đảm chất lượng, ma trận ca kiểm thử Normal, Boundary, Invalid inputs cho 4 phép tính, kịch bản integration tests cho API và checklist kiểm thử khả năng tiếp cận (A11y).
+
+- **Thư mục [`tai-lieu-tham-khao/`](tai-lieu-tham-khao/):** Chứa các tài liệu hướng dẫn cuộc thi, báo cáo Checkpoint 1, bộ câu hỏi mẫu fixtures và nhật ký AI:
+  1. [`KTPMUD_Hack_Marathon_2026_Track2_Huong_Dan.md`](tai-lieu-tham-khao/KTPMUD_Hack_Marathon_2026_Track2_Huong_Dan.md): Hướng dẫn chi tiết cuộc thi Hackathon Marathon 2026 (Track 2 / Track B).
+  2. [`CHECKPOINT_1_REPORT.md`](tai-lieu-tham-khao/CHECKPOINT_1_REPORT.md): Báo cáo Scope Gate đã được nghiệm thu tại mốc Checkpoint 1.
+  3. [`SEED_FIXTURES.md`](tai-lieu-tham-khao/SEED_FIXTURES.md): Bộ đặc tả 16 câu hỏi mẫu synthetic chuẩn hóa theo SGK Toán 3 Kết nối tri thức cho cả 4 phép tính (+, -, ×, :).
+  4. [`AI_USE.md`](tai-lieu-tham-khao/AI_USE.md): Nhật ký sử dụng AI minh bạch, truy vết trách nhiệm từng thành viên và quy trình kiểm chứng 100% đề xuất kỹ thuật.
+  5. [`HUONG_DAN_KIEM_TRA_TIEN_DO_PC1_11_11.md`](tai-lieu-tham-khao/HUONG_DAN_KIEM_TRA_TIEN_DO_PC1_11_11.md): Cẩm nang hướng dẫn kiểm tra tiến độ phục vụ buổi phỏng vấn PC-1.
+
+- **Thư mục [`progress/`](progress/):**
+  - [`PROGRESS.md`](progress/PROGRESS.md): Bảng theo dõi tiến độ thi đấu chính thức theo format chuẩn của ban tổ chức qua các mốc PC-1, PC-2 và Code Freeze.
 
 ## 3. API chính
 
