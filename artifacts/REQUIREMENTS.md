@@ -89,7 +89,10 @@ Quy trình sư phạm 2 bước chuẩn hóa:
      3. ⚠️ **Nhập đáp án tính đúng vào ô ước lượng (Exact Match in Estimate Box - 50% Base, tức 27.5% tổng điểm):** Học sinh tính ra kết quả đúng rồi điền vào ô ước lượng ($E = A$). Hệ thống chấm 50% điểm Base và kèm lời nhắc nhở sư phạm giúp học sinh hiểu bản chất bài học là rèn luyện phản xạ nhẩm trước khi tính.
      4. 💡 **Trong khoảng nhưng không theo quy tắc / gõ bừa (In-range Random/No-rule - 35% Base, tức 19.25% tổng điểm):** Giá trị nằm trong khoảng dung sai $E \in [E_{min}, E_{max}]$ nhưng không trùng bất kỳ điểm neo Vàng hay Bạc nào. Hệ thống ghi nhận 35% điểm Base và hiển thị gợi ý phương pháp làm tròn.
      5. ❌ **Ngoài khoảng (Out-of-range - 0% Base):** Giá trị quá xa thực tế ($E < E_{min}$ hoặc $E > E_{max}$).
-   - **Cơ chế bộ đếm thời gian thích ứng tối đa 60 giây mỗi pha (Adaptive Phase Timer):**
+   - **Cơ chế bảo vệ tương tác & kiểm soát chuyển pha (Empty Input Guard & Mouse Wheel Guard - B-12):**
+      + **Vô hiệu hóa cử chỉ cuộn chuột (Mouse Wheel Guard):** Chặn triệt để sự kiện `wheel` và ẩn spin-button trên mọi ô nhập số `<input type="number">`, tránh tình trạng học sinh vô tình bị nhảy số/thay đổi đáp án khi dùng chuột cuộn màn hình xem đề bài.
+      + **Ràng buộc kiểm tra ô nhập rỗng (Empty Input Guard):** Khi thời gian còn hiệu lực ($t > 0$), nếu học sinh bấm phím Enter hoặc bấm nút chuyển pha/xác nhận mà **chưa điền câu trả lời**, hệ thống **tuyệt đối không cho phép next qua ngay**. Hệ thống giữ nguyên trạng thái hiện tại, hiển thị ô nhắc nhở sư phạm màu hổ phách cảnh báo rõ ràng (*"Em chưa điền đáp án! Hãy suy nghĩ và nhập con số trước khi tiếp tục nhé! 💡"*), đồng thời làm nổi bật viền ô nhập và tự động focus con trỏ để học sinh điền số.
+    - **Cơ chế bộ đếm thời gian thích ứng tối đa 60 giây mỗi pha (Adaptive Phase Timer):**
      + Mỗi pha tương tác có đồng hồ đếm ngược độc lập từ 60 giây về 0 giây ($T = 60s$).
      + **Điểm thưởng tốc độ (Time Bonus):**
        * Pha ước lượng: $\text{TimeBonus}_{est} = \text{round}\left(15 \times \frac{\max(0, 60 - t_{est})}{60}\right)$ (chỉ tính thưởng khi học sinh đạt điểm logic ước lượng > 0).

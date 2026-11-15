@@ -189,7 +189,16 @@ Quy chuẩn câu hỏi 10 điểm ($P = 10$): Pha 1 tối đa 7.0 điểm (5.5 B
 | **UT-SCR-07** | **Ước lượng sai nhưng tính đúng:** Ngoài dung sai ($t_1 = 10s$) + Tính đúng ($t_2 \le 20s$) | $0.0 + 0.0 = \mathbf{0.0}$ | $2.5 + 0.5 = \mathbf{3.0}$ | **3.0 / 10** (30.0%) | ✏️ Chỉ nhận 30% điểm tính đúng |
 | **UT-SCR-08** | **Sai cả hai:** Ngoài dung sai + Tính sai kết quả | $0.0 + 0.0 = \mathbf{0.0}$ | $0.0 + 0.0 = \mathbf{0.0}$ | **0.0 / 10** (0%) | ❌ Cần ôn tập lại |
 
-### 3.7. Nhóm ca kiểm thử tương thích ngược (Backward Compatibility)
+### 3.7. Nhóm ca kiểm thử Giao diện & Công thái học (UI/UX Ergonomics & Guards)
+| Mã Test | Tình huống kiểm thử | Thao tác người dùng | Kết quả kỳ vọng |
+|:---|:---|:---|:---|
+| **UT-UI-01** | Ngăn cuộn chuột đổi số (Mouse Wheel Guard) | Focus vào ô ước lượng có số 90 và lăn con cuộn chuột lên/xuống | Giá trị số 90 giữ nguyên tuyệt đối, không bị tăng/giảm đơn vị |
+| **UT-UI-02** | Ngăn chuyển Pha 1 khi chưa điền số (Empty Input Guard P1) | Ô ước lượng rỗng, thời gian $t = 45s > 0$, bấm phím Enter hoặc nút "Xác nhận ước lượng" | Không chuyển sang Pha 2; hiện hộp nhắc nhở màu vàng hổ phách: *"Em chưa điền số ước lượng..."*; focus lại vào ô ước lượng |
+| **UT-UI-03** | Ngăn chuyển Pha 2 khi chưa điền số (Empty Input Guard P2) | Ô tính đúng rỗng, thời gian $t = 30s > 0$, bấm phím Enter hoặc nút "Xác nhận kết quả" | Không hoàn thành câu; hiện hộp nhắc nhở màu vàng hổ phách: *"Em chưa điền kết quả tính đúng..."*; focus lại vào ô tính đúng |
+| **UT-UI-04** | Tự động ẩn nhắc nhở khi học sinh gõ số | Hộp nhắc nhở đang hiện, học sinh bắt đầu gõ phím số vào ô | Hộp nhắc nhở tự động biến mất, viền cảnh báo trở về màu mặc định |
+| **UT-UI-05** | Hết giờ tự động chuyển pha (Timeout Transition) | Ô nhập rỗng nhưng đồng hồ đếm về $0$ giây ($t = 0s$) | Hệ thống tự động khóa ô và chuyển sang pha kế tiếp an toàn, ghi nhận 0 điểm tốc độ |
+
+### 3.8. Nhóm ca kiểm thử tương thích ngược (Backward Compatibility)
 | Mã Test | Dạng câu hỏi | Dữ liệu kiểm thử | Kết quả kỳ vọng |
 |:---|:---|:---|:---|
 | **UT-BC-01** | Câu trắc nghiệm `multiple-choice` | Đáp án khớp `correct_answer` gốc | Chấm đúng 100%, không bị ảnh hưởng bởi logic `estimate` |

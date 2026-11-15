@@ -819,6 +819,23 @@ Giao diện trực quan được thiết kế đặc thù cho học sinh Lớp 3
    - **Vàng hổ phách (`#F59E0B`):** Thời gian còn $16s - 30s$. Xuất hiện gợi ý Ong Vàng hỗ trợ.
    - **Đỏ cảnh báo nhấp nháy (`#EF4444` pulse):** Thời gian còn dưới $15s$. Báo hiệu sắp hết giờ để học sinh gõ số.
 
+5. **Vô hiệu hóa cử chỉ cuộn chuột (Mouse Wheel Guard):**
+   - **Vấn đề thực tế:** Với phần tử `<input type="number">`, hành vi mặc định của trình duyệt là tăng/giảm số khi học sinh vô tình lăn con cuộn chuột (`wheel`). Khi học sinh cuộn trang để đọc lại đề bài, việc con trỏ nằm trên ô nhập sẽ làm số bị nhảy sai lệch mà các em không để ý.
+   - **Giải pháp:** 
+     + CSS chuẩn hóa: Ẩn hoàn toàn spin-button mũi tên tăng giảm (`-webkit-outer-spin-button`, `-webkit-inner-spin-button: none` và `-moz-appearance: textfield`).
+     + JavaScript: Chặn sự kiện `wheel` trên mọi input (`e.preventDefault()`), loại bỏ hoàn toàn nguy cơ nhảy số vô ý.
+
+6. **Ràng buộc kiểm tra trước khi chuyển pha (Empty Input Guard):**
+   - **Vấn đề thực tế:** Học sinh lớp 3 hay có thói quen bấm phím Enter hoặc bấm nút "Xác nhận ước lượng" khi chưa kịp suy nghĩ và chưa gõ số. Nếu hệ thống cho phép next qua ngay, học sinh sẽ bị mất oan điểm ước lượng và phải chuyển sang Pha 2 trong tâm lý ức chế.
+   - **Giải pháp:** 
+     + Khi thời gian còn lại $t > 0$, nếu giá trị ô nhập rỗng (`value.trim() === ''`):
+       * Chặn không cho chuyển pha (`transitionToPhase2` hoặc `completeEstimateQuestion` return ngay lập tức).
+       * Không khóa ô nhập, không dừng đồng hồ đếm ngược.
+       * Hiển thị ngay hộp nhắc nhở màu hổ phách (*"Em chưa điền số ước lượng! Hãy suy nghĩ và nhập con số ước lượng trước khi tiếp tục nhé! 💡"*).
+       * Làm nổi bật viền ô nhập (`ring-4 ring-amber-200 border-amber-500`) và tự động focus con trỏ trở lại ô nhập.
+       * Cảnh báo tự động ẩn đi ngay khi học sinh gõ ký tự số đầu tiên (`input` event).
+     + Chỉ khi đồng hồ đếm ngược về $0$ giây (hết giờ timeout), hệ thống mới tự động chuyển pha theo quy chuẩn timeout.
+
 5. **Chấm điểm & Hiển thị đáp án, nhận xét tức thì ngay khi xong từng câu (Instant Feedback):**
    - **Vấn đề sư phạm:** Nếu đợi đến khi nộp toàn bộ 16 câu mới hiển thị đáp án, học sinh sẽ quên mất mạch suy luận của các câu đầu, làm giảm hiệu quả học tập.
    - **Giải pháp:** Ngay khi học sinh hoàn thành xong Pha 2 của Câu $k$, hệ thống gọi API `POST /api/questions/:id/check` trên server để chấm tức thì và hiển thị ngay trên thẻ câu hỏi:

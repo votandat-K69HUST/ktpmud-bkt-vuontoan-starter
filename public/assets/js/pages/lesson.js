@@ -230,18 +230,66 @@
     }
   }
 
+
+  // Hiển thị ô nhắc nhở sư phạm khi học sinh bấm chuyển câu/chuyển pha mà chưa điền đáp án trong lúc còn giờ
+  function showInputValidationWarning(qId, phase, message) {
+    const warnId = `validation-warn-${qId}-${phase}`;
+    let warnBox = document.getElementById(warnId);
+    const phaseBox = document.getElementById(`phase-${phase === 'estimate' ? 1 : 2}-box-${qId}`);
+    if (!phaseBox) return;
+
+    if (!warnBox) {
+      warnBox = document.createElement('div');
+      warnBox.id = warnId;
+      warnBox.className = 'mt-3 p-3.5 rounded-2xl bg-amber-50 border-2 border-amber-300 text-amber-950 font-bold text-xs sm:text-sm flex items-center gap-2.5 shadow-sm transition-all duration-300 animate-fade-in';
+      phaseBox.appendChild(warnBox);
+    }
+
+    warnBox.innerHTML = `
+      <span class="material-symbols-outlined text-amber-600 text-[22px]">warning</span>
+      <span>${message}</span>
+    `;
+    warnBox.classList.remove('hidden');
+
+    const inp = container.querySelector(`input[data-q="${qId}"][data-phase="${phase}"]`);
+    if (inp) {
+      inp.classList.add('border-amber-500', 'ring-4', 'ring-amber-200');
+      inp.focus();
+      const clearWarn = () => {
+        warnBox.classList.add('hidden');
+        inp.classList.remove('border-amber-500', 'ring-4', 'ring-amber-200');
+        inp.removeEventListener('input', clearWarn);
+      };
+      inp.addEventListener('input', clearWarn);
+    }
+  }
+
   function transitionToPhase2(qId, fromTimeout = false) {
     const state = estimateStates[qId];
     if (!state || state.phase !== 1) return;
+
+    const estInput = container.querySelector(`input[data-q="${qId}"][data-phase="estimate"]`);
+    const rawVal = estInput ? estInput.value.trim() : '';
+
+    // RÀNG BUỘC: Nếu học sinh chưa điền câu trả lời mà thời gian vẫn còn -> Không cho next, hiện ô nhắc nhở
+    if (!fromTimeout && rawVal === '' && state.timeLeft > 0) {
+      showInputValidationWarning(qId, 'estimate', 'Em chưa điền số ước lượng! Hãy suy nghĩ và nhập con số ước lượng trước khi tiếp tục nhé! 💡');
+      return;
+    }
+
+    // Ẩn ô cảnh báo nếu trước đó có hiện
+    const prevWarn = document.getElementById(`validation-warn-${qId}-estimate`);
+    if (prevWarn) prevWarn.classList.add('hidden');
 
     stopTimer(qId);
     if (!fromTimeout) {
       state.estimateTimeSeconds = Math.max(1, 60 - state.timeLeft);
     }
 
-    const estInput = container.querySelector(`input[data-q="${qId}"][data-phase="estimate"]`);
-    if (estInput && estInput.value.trim() !== '') {
-      state.estimateValue = Number(estInput.value);
+    if (rawVal !== '') {
+      state.estimateValue = Number(rawVal);
+    } else {
+      state.estimateValue = null;
     }
 
     // Khóa ô nhập Pha 1
@@ -312,14 +360,28 @@
     const state = estimateStates[qId];
     if (!state || state.phase !== 2) return;
 
+    const exactInput = container.querySelector(`input[data-q="${qId}"][data-phase="exact"]`);
+    const rawVal = exactInput ? exactInput.value.trim() : '';
+
+    // RÀNG BUỘC: Nếu học sinh chưa điền câu trả lời mà thời gian vẫn còn -> Không cho hoàn thành, hiện ô nhắc nhở
+    if (!fromTimeout && rawVal === '' && state.timeLeft > 0) {
+      showInputValidationWarning(qId, 'exact', 'Em chưa điền kết quả tính đúng! Hãy đặt tính ra nháp và nhập kết quả trước khi hoàn thành nhé! ✏️');
+      return;
+    }
+
+    // Ẩn ô cảnh báo nếu trước đó có hiện
+    const prevWarn = document.getElementById(`validation-warn-${qId}-exact`);
+    if (prevWarn) prevWarn.classList.add('hidden');
+
     stopTimer(qId);
     if (!fromTimeout) {
       state.exactTimeSeconds = Math.max(1, 60 - state.timeLeft);
     }
 
-    const exactInput = container.querySelector(`input[data-q="${qId}"][data-phase="exact"]`);
-    if (exactInput && exactInput.value.trim() !== '') {
-      state.exactValue = Number(exactInput.value);
+    if (rawVal !== '') {
+      state.exactValue = Number(rawVal);
+    } else {
+      state.exactValue = null;
     }
 
     // Khóa ô nhập Pha 2
@@ -854,6 +916,7 @@
 
     // Gắn sự kiện cho các ô input thường (không thuộc câu estimate)
     container.querySelectorAll('input[data-q]:not([data-phase])').forEach(inp => {
+      inp.addEventListener('wheel', (e) => e.preventDefault(), { passive: false });
       inp.addEventListener('input', () => {
         answers[inp.dataset.q] = inp.value.trim();
         updateProgress();
@@ -862,6 +925,11 @@
         if (e.key === 'Enter') {
           e.preventDefault();
           const qId = inp.dataset.q;
+          if (inp.value.trim() === '') {
+            inp.classList.add('border-amber-500', 'ring-4', 'ring-amber-200');
+            setTimeout(() => inp.classList.remove('border-amber-500', 'ring-4', 'ring-amber-200'), 1500);
+            return;
+          }
           inp.readOnly = true;
           await checkAndShowQuestionFeedback(qId);
         }
@@ -877,6 +945,7 @@
       const estBtn = container.querySelector(`.btn-confirm-estimate[data-q="${qId}"]`);
 
       if (estInput) {
+        estInput.addEventListener('wheel', (e) => e.preventDefault(), { passive: false });
         estInput.addEventListener('input', () => {
           const st = estimateStates[qId];
           if (st) {
@@ -906,6 +975,7 @@
       const exactBtn = container.querySelector(`.btn-confirm-exact[data-q="${qId}"]`);
 
       if (exactInput) {
+        exactInput.addEventListener('wheel', (e) => e.preventDefault(), { passive: false });
         exactInput.addEventListener('input', () => {
           const st = estimateStates[qId];
           if (st) {
@@ -1039,6 +1109,13 @@
       alert(`Chưa nộp được bài: ${err.message}`);
     }
   });
+
+  // VÔ HIỆU HÓA CỬ CHỈ LĂN CHUỘT (Mouse Wheel) để tránh học sinh vô tình bị thay đổi số
+  document.addEventListener('wheel', (e) => {
+    if (e.target && e.target.matches && (e.target.matches('input[type="number"]') || e.target.matches('input[data-phase]') || e.target.matches('input[data-q]'))) {
+      e.preventDefault();
+    }
+  }, { passive: false });
 
   document.addEventListener('mathapp:user-ready', init);
 })();

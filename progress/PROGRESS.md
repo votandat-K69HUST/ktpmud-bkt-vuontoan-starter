@@ -20,7 +20,7 @@
 | B-09 | Xong | [`package.json`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/blob/bkt-dev/package.json) | Cấu hình script `npm test` với Jest và Supertest trên Node 20 LTS, chạy `npm test` đạt 65/65 tests PASS (100% xanh) |
 | B-10 | Đang | Thiết kế CI: [`artifacts/DECISIONS.md#adr-05`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/blob/main/artifacts/DECISIONS.md) tại commit [`0c18013`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/0c1801341eb8b37828a574a7ce9a7841231aabe4) | Thiết lập workflow GitHub Actions chạy `npm ci` và `npm test` tự động |
 | B-11 | Xong | Nhật ký kiểm duyệt: [`tai-lieu-tham-khao/AI_USE.md`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/blob/main/tai-lieu-tham-khao/AI_USE.md) | Kiểm chứng 100% đề xuất AI, không đưa bí mật/PII vào repo; chỉ dùng dữ liệu synthetic |
-| B-12 | Xong | [`public/assets/js/pages/lesson.js`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/blob/bkt-dev/public/assets/js/pages/lesson.js) & [`artifacts/DECISIONS.md#adr-04`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/blob/main/artifacts/DECISIONS.md) | Trải nghiệm Accessibility A11y & Công thái học: Đồng hồ chuyển màu dịu mắt, ARIA live thông báo hỗ trợ đọc màn hình, điều hướng phím Enter/Tab mượt mà giữa các pha, nút bấm và ô chữ số siêu to dễ bấm chạm |
+| B-12 | Xong | [`public/assets/js/pages/lesson.js`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/blob/bkt-dev/public/assets/js/pages/lesson.js) & [`artifacts/DECISIONS.md#adr-04`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/blob/main/artifacts/DECISIONS.md) | Trải nghiệm Accessibility A11y & Công thái học: Vô hiệu hóa cử chỉ cuộn chuột (Mouse Wheel Guard) tránh nhảy số, cơ chế Empty Input Guard ngăn chuyển pha khi chưa điền đáp án lúc còn giờ kèm hộp nhắc nhở sư phạm, đồng hồ chuyển màu dịu mắt, ARIA live, điều hướng phím Enter/Tab mượt mà, nút bấm và ô chữ số siêu to dễ bấm chạm |
 
 ### 1.2. Sửa đổi bắt buộc từ Checkpoint 1
 <!-- Các mục ❗ trong nhận xét Checkpoint 1 của nhóm. Nếu không có, ghi "Không có". -->
@@ -55,16 +55,21 @@
 ### 1.6. Phân công (alias hoặc vai trò, KHÔNG ghi họ tên/MSSV)
 | Alias / vai trò | Đầu việc chính | Commit/PR tiêu biểu |
 |---|---|---|
-| **Lead / BA / Tester** | Đặc tả yêu cầu `REQUIREMENTS.md`, kế hoạch kiểm thử `TEST_PLAN.md`, bộ fixture `tai-lieu-tham-khao/SEED_FIXTURES.md` (4 phép tính, điểm neo Vàng/Bạc, phân cấp 5 bậc), bộ automated test Jest | [`0c18013`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/0c1801341eb8b37828a574a7ce9a7841231aabe4) |
-| **Backend / Architect** | Thiết kế kiến trúc `DECISIONS.md` (4 phép tính, tỷ lệ 70/30, timer 60s), lập trình module `server/scoring.js`, mở rộng API & SQLite, cấu hình CI | [`0c18013`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/0c1801341eb8b37828a574a7ce9a7841231aabe4) |
-| **Frontend / UX** | Thiết kế giao diện 2 pha trên `lesson.js`, bộ đếm ngược thích ứng 60s, phản hồi 2 tầng kèm huy hiệu Vàng/Bạc, điều hướng phím Tab/Enter A11y, làm slide demo | [`0c18013`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/0c1801341eb8b37828a574a7ce9a7841231aabe4) |
+| **Lead / BA / Tester** | Đặc tả yêu cầu `REQUIREMENTS.md`, kế hoạch kiểm thử `TEST_PLAN.md`, bộ fixture `tai-lieu-tham-khao/SEED_FIXTURES.md` (4 phép tính, điểm neo Vàng/Bạc, phân cấp 5 bậc), bộ automated test Jest (65 tests) | [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562) (CP2) · [`0c18013`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/0c1801341eb8b37828a574a7ce9a7841231aabe4) (PC1) |
+| **Backend / Architect** | Thiết kế kiến trúc `DECISIONS.md` (4 phép tính, tỷ lệ 70/30, timer 60s), lập trình module `server/scoring.js`, mở rộng API & SQLite, cấu hình CI | [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562) (CP2) · [`0c18013`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/0c1801341eb8b37828a574a7ce9a7841231aabe4) (PC1) |
+| **Frontend / UX** | Thiết kế giao diện 2 pha trên `lesson.js`, bộ đếm ngược thích ứng 60s từng câu độc lập, gợi ý 30s, phản hồi 2 tầng kèm huy hiệu 5 bậc, điều hướng phím Tab/Enter A11y, kịch bản demo | [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562) (CP2) · [`0c18013`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/0c1801341eb8b37828a574a7ce9a7841231aabe4) (PC1) |
 
 ## PC-2 — 18/11/2026
 <!-- Phần dưới đây sẽ được nhóm điền tiếp tại buổi PC-2 ngày 18/11/2026 theo hướng dẫn đề thi -->
 
-### 2.1. Đối chiếu timeline PC-1
+### 2.1. Đối chiếu timeline PC-1 & Mốc Checkpoint 2 (15/11/2026)
 | Việc (theo bảng 1.3) | Kế hoạch | Thực tế | Lệch & lý do |
 |---|---|---|---|
+| Cài đặt module `server/scoring.js` (4 phép tính, 70/30, 5 bậc, Time Bonus) | 11/11/2026 | Hoàn thành tại commit [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562) | Đúng kế hoạch, bổ sung thêm phân cấp 5 bậc chi tiết |
+| Nạp 16 câu seed vào `data/seed.json` & route `POST /submissions` | 12/11/2026 | Hoàn thành tại commit [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562) | Đúng kế hoạch, đồng bộ SQLite `data/vuon-toan.db` |
+| Cập nhật UI 2 pha, bộ đếm ngược 60s/pha độc lập & gợi ý sau 30s | 13/11/2026 | Hoàn thành tại commit [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562) | Đúng kế hoạch, tối ưu công thái học chữ to và phản hồi tức thì |
+| Tối ưu A11y Tab/Enter & hoàn thiện Vertical Slice | 14/11/2026 | Hoàn thành tại commit [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562) | Đúng tiến độ, 65/65 automated tests xanh 100% |
+| Demo nội bộ 5 phút với TA/GV (Checkpoint 2) | 15/11/2026 | Sẵn sàng kịch bản demo tại [`tai-lieu-tham-khao/KICH_BAN_DEMO_CHECKPOINT_2_15_11.md`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/blob/main/tai-lieu-tham-khao/KICH_BAN_DEMO_CHECKPOINT_2_15_11.md) | Đúng tiến độ mốc Checkpoint 2 |
 
 ### 2.2. Tiến độ theo acceptance criteria (cập nhật toàn bộ bảng 1.1)
 | Mã | Trạng thái | Bằng chứng | Ghi chú |

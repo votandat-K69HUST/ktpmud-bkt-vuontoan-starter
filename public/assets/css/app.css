@@ -229,3 +229,13 @@ button:disabled { cursor: not-allowed; opacity: .75; }
   color: #0f172a;
 }
 
+
+/* Vô hiệu hóa spin buttons và ngăn cử chỉ cuộn chuột nhảy số trên ô nhập số */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
