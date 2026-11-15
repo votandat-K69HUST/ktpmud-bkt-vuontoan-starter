@@ -104,11 +104,11 @@ n & \text{nếu } u = 0 \quad (\text{đã là số tròn chục})
 
 | Cấp độ Điểm Neo | Đặc tả Logic Sư phạm & Tình huống Học sinh | Tỷ lệ Base Score Pha 1 | Huy hiệu Đạt được | Phản hồi & Gợi ý Sư phạm |
 |:---|:---|:---:|:---:|:---|
-| **1. Điểm neo Vàng (Gold Anchor)** | Làm tròn **cả 2 số** về hàng chục theo chuẩn SGK Toán 3 Kết nối tri thức. Ví dụ: $38 + 47 \rightarrow 40 + 50 = 90$. | **100%** | 🥇 **Huy hiệu Vàng** | *"Xuất sắc! Em ước lượng chuẩn theo điểm neo SGK (làm tròn số tròn chục)."* |
-| **2. Điểm neo Bạc (Silver Anchors)** | Chiến lược làm tròn linh hoạt: Làm tròn 1 số, giữ nguyên số còn lại (ví dụ $40 + 47 = 87$ hoặc $38 + 50 = 88$); hoặc cùng floor/ceil hàng chục ($30 + 40 = 70$). | **75%** | 🥈 **Huy hiệu Bạc** | *"Rất tốt! Em ước lượng theo chiến lược làm tròn linh hoạt hợp lý."* |
-| **3. Điểm neo Bằng Đáp án Đúng (Exact Match in Estimate)** | Học sinh tính nhẩm ra kết quả chính xác rồi điền luôn vào ô ước lượng ($E_{given} == A_{exact}$ với $A_{exact}$ là số lẻ, ví dụ nhập 85). | **50%** | 🥉 **Huy hiệu Đồng** | *"Em tính nhẩm ra đúng kết quả! Tuy nhiên, ở bước ước lượng, em nên làm tròn thành số tròn chục để kiểm tra nhanh nhé!"* |
-| **4. Dung sai Không Theo Neo (Tolerance Only - Non-Anchor)** | Nhập số lẻ bất kỳ nằm trong dải dung sai $\pm 15\%$ (hoặc $\pm \Delta_{min}$) nhưng **KHÔNG** theo bất kỳ điểm neo logic nào (Đoán mò / gõ số lẻ, ví dụ $83, 89$). | **35%** *(Khuyến khích)* | 🌱 **Huy hiệu Khuyến khích** | *"Ước lượng nằm trong khoảng gần đúng. Gợi ý: Em hãy làm tròn về số tròn chục để nhẩm nhanh và chính xác hơn nhé!"* |
-| **5. Ngoài Dải Dung Sai (Out of Tolerance)** | Ước lượng lệch quá ngưỡng sai số cho phép (độ lệch lớn hơn $\Delta_{min}$ và nằm ngoài khoảng cho phép). | **0%** | ❌ **Cần cố gắng** | *"Ước lượng chưa thật sát. Em hãy làm tròn các số về hàng chục gần nhất để nhẩm nhé!"* |
+| **1. Điểm neo Vàng (Gold Anchor)** | Làm tròn **cả 2 số** về hàng chục theo quy tắc SGK Toán 3 Kết nối tri thức. Ví dụ: $54 + 27 \rightarrow 50 + 30 = 80$. | **100%** | 🥇 **Huy hiệu Vàng** | *"Xuất sắc! Em ước lượng chuẩn theo điểm neo SGK (làm tròn số tròn chục)."* |
+| **2. Điểm neo Bạc (Silver Anchors)** | Chiến lược làm tròn 1 số, giữ nguyên số còn lại. Ví dụ: $54 + 27 \rightarrow 50 + 27 = 77$ hoặc $54 + 30 = 84$. | **75%** | 🥈 **Huy hiệu Bạc** | *"Rất tốt! Em ước lượng theo chiến lược làm tròn linh hoạt hợp lý."* |
+| **3. Hạng Đồng (Đồng hạng & Bằng điểm nhau: 50% Base)** | **Bao gồm 2 trường hợp có số điểm bằng nhau:**<br/>• **3a. Đặt tính đúng vào ô ước lượng (`EXACT_MATCH_IN_ESTIMATE`):** Điền thẳng kết quả chính xác vào ô ước lượng (ví dụ nhập 81).<br/>• **3b. Ước lượng cận trên / cận dưới (`BOUNDING_ANCHOR`):** Cùng làm tròn xuống hoặc cùng làm tròn lên (floor+floor, ceil+ceil, ví dụ $50 + 20 = 70$ hoặc $60 + 30 = 90$). | **50%** | 🥉 **Huy hiệu Đồng** | • 3a: *"Em tính nhẩm ra đúng kết quả! Tuy nhiên, ở bước ước lượng, em nên làm tròn thành số tròn chục để kiểm tra nhanh nhé!"*<br/>• 3b: *"Số em nhập là ước lượng cận trên/dưới. Em nên làm tròn theo quy tắc SGK để nhẩm nhé!"* |
+| **4. Dung sai Không Theo Neo (Tolerance Only - Non-Anchor)** | Nhập số lẻ bất kỳ nằm trong dải dung sai $\pm 15\%$ (hoặc $\pm \Delta_{min}$) nhưng **KHÔNG** theo bất kỳ điểm neo logic nào (Đoán mò / gõ số lẻ trong khoảng, ví dụ $73, 75, 78, 83$). | **35%** *(Khuyến khích)* | 🌱 **Huy hiệu Khuyến khích** | *"Ước lượng nằm trong khoảng gần đúng. Gợi ý: Em hãy làm tròn về số tròn chục để nhẩm nhanh và chính xác hơn nhé!"* |
+| **5. Ngoài Dải Dung Sai (Out of Tolerance)** | Ước lượng lệch quá ngưỡng sai số cho phép (độ lệch lớn hơn $\Delta_{min}$ và nằm ngoài khoảng cho phép). | **0%** | ✏️ **Cần cố gắng** | *"Ước lượng chưa thật sát. Em hãy làm tròn các số về hàng chục gần nhất để nhẩm nhé!"* |
 
 ---
 
@@ -238,49 +238,72 @@ function calculateGoldAnchor(operation, op1, op2) {
 }
 
 /**
- * Tập hợp các điểm neo Bạc (Silver Anchors - làm tròn 1 số hoặc cận tròn chục)
+ * Tập hợp các điểm neo Bạc (Silver Anchors - làm tròn 1 số, giữ nguyên số còn lại)
  */
 function calculateSilverAnchors(operation, op1, op2) {
   const o1 = Number(op1);
   const o2 = Number(op2);
   const anchors = new Set();
+  if (isNaN(o1) || isNaN(o2)) return [];
 
   if (operation === '+') {
-    // Làm tròn 1 số, giữ nguyên số còn lại
     anchors.add(roundToTen(o1) + o2);
     anchors.add(o1 + roundToTen(o2));
-    // Cận dưới (cùng floor hàng chục) & Cận trên (cùng ceil hàng chục)
-    const floor1 = Math.floor(o1 / 10) * 10;
-    const floor2 = Math.floor(o2 / 10) * 10;
-    const ceil1 = Math.ceil(o1 / 10) * 10;
-    const ceil2 = Math.ceil(o2 / 10) * 10;
-    anchors.add(floor1 + floor2);
-    anchors.add(ceil1 + ceil2);
   } else if (operation === '-') {
     anchors.add(roundToTen(o1) - o2);
     anchors.add(o1 - roundToTen(o2));
-    const floor1 = Math.floor(o1 / 10) * 10;
-    const floor2 = Math.floor(o2 / 10) * 10;
-    const ceil1 = Math.ceil(o1 / 10) * 10;
-    const ceil2 = Math.ceil(o2 / 10) * 10;
+  }
+
+  const gold = calculateGoldAnchor(operation, op1, op2);
+  anchors.delete(gold);
+  return Array.from(anchors).filter(v => v > 0);
+}
+
+/**
+ * Tập hợp các điểm neo Cận trên / Cận dưới (Bounding Anchors)
+ * (Nhận cùng Huy hiệu ĐỒNG và 50% Base điểm với Đặt tính đúng)
+ */
+function calculateBoundingAnchors(operation, op1, op2) {
+  const o1 = Number(op1);
+  const o2 = Number(op2);
+  const anchors = new Set();
+  if (isNaN(o1) || isNaN(o2)) return [];
+
+  const floor1 = Math.floor(o1 / 10) * 10;
+  const floor2 = Math.floor(o2 / 10) * 10;
+  const ceil1 = Math.ceil(o1 / 10) * 10;
+  const ceil2 = Math.ceil(o2 / 10) * 10;
+
+  if (operation === '+') {
+    anchors.add(floor1 + floor2);
+    anchors.add(ceil1 + ceil2);
+  } else if (operation === '-') {
     anchors.add(floor1 - floor2);
     anchors.add(ceil1 - ceil2);
+    anchors.add(floor1 - ceil2);
+    anchors.add(ceil1 - floor2);
   } else if (operation === '*' || operation === 'x' || operation === '×') {
-    const floor1 = Math.floor(o1 / 10) * 10;
-    const ceil1 = Math.ceil(o1 / 10) * 10;
-    anchors.add(floor1 * o2);
-    anchors.add(ceil1 * o2);
+    if (o1 >= 10 && o2 < 10) {
+      anchors.add(floor1 * o2);
+      anchors.add(ceil1 * o2);
+    } else if (o1 < 10 && o2 >= 10) {
+      anchors.add(o1 * floor2);
+      anchors.add(o1 * ceil2);
+    } else {
+      anchors.add(floor1 * floor2);
+      anchors.add(ceil1 * ceil2);
+    }
   } else if (operation === ':' || operation === '/' || operation === '÷') {
     if (o2 !== 0) {
-      const floor1 = Math.floor(o1 / 10) * 10;
-      const ceil1 = Math.ceil(o1 / 10) * 10;
       anchors.add(Math.round(floor1 / o2));
       anchors.add(Math.round(ceil1 / o2));
     }
   }
 
   const gold = calculateGoldAnchor(operation, op1, op2);
+  const silvers = new Set(calculateSilverAnchors(operation, op1, op2));
   anchors.delete(gold);
+  for (const s of silvers) anchors.delete(s);
   return Array.from(anchors).filter(v => v > 0);
 }
 
@@ -736,35 +759,74 @@ Toàn bộ việc lưu trữ `attempts`, cập nhật điểm tốt nhất trong
 
 ## ADR-04: Thiết kế Trải nghiệm Người dùng (UX thẻ 2 pha) & Khả năng tiếp cận Accessibility
 
-### 1. Trạng thái: `ACCEPTED` (Đã phê duyệt & Bổ sung Countdown Timer + Huy hiệu Logic)
+### 1. Trạng thái: `ACCEPTED` (Đã phê duyệt & Cập nhật: Bộ đếm thời gian tách riêng từng câu, Gợi ý sư phạm sau 30s & Công thái học nút bấm chữ to)
 
-### 2. Thẻ tương tác 2 pha (Phased Interaction Card) kèm Visual Countdown Timer 60s
-Giao diện trực quan dành riêng cho học sinh 8–9 tuổi, tích hợp đồng hồ đếm ngược trực quan tối đa 60 giây cho mỗi pha làm bài:
+### 2. Thẻ tương tác 2 pha (Phased Interaction Card) & Bộ đếm thời gian tách riêng từng câu
+Giao diện trực quan được thiết kế đặc thù cho học sinh Lớp 3 (8–9 tuổi), giải quyết triệt để vấn đề áp lực thời gian:
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│ Câu 1 • 10 điểm • Phép cộng ước lượng                                   │
-│ 38 + 47 = ?                                  ⏱️ Đếm ngược: [████░░] 28s │
-├────────────────────────────────────────────────────────────────────────┤
-│ 🐝 Ong Vàng mách nước: Em hãy làm tròn 38 và 47 về hàng chục để nhẩm! │
+│ Câu 1 / 16 • 10 điểm • Ước lượng phép cộng         🟢 Đang làm         │
+│ ┌────────────────────────────────────────────────────────────────────┐ │
+│ │ PHÉP TÍNH:   38 + 49 = ?                                        📐 │ │
+│ └────────────────────────────────────────────────────────────────────┘ │
+│ ⏱️ Bộ đếm Pha 1 (Nhẩm): [████████████░░░░░░] 28s                     │
+│                                                                        │
+│ 💡 Gợi ý cách làm:                                                     │
+│ "Làm tròn 38 lên 40, 49 lên 50. Nhẩm tính: 40 + 50 = ?"                │
 │                                                                        │
 │ [Pha 1: Ước lượng nhẩm]  (Tối đa 60s • 70% tổng điểm)                  │
-│ Em đoán kết quả khoảng: [  90  ]  (Số tròn chục: 80, 90, 100...)       │
+│ Ô nhập to rõ (h-16): [       90       ]                                │
+│ [ 👉 Xác nhận ước lượng ]                                             │
 │                                                                        │
 │ [Pha 2: Đặt tính tính đúng]  (Tối đa 60s • 30% tổng điểm)              │
-│ Kết quả chính xác là:   [  85  ]                                       │
+│ Ước lượng của em: 90                                                  │
+│ Ô nhập to rõ (h-16): [       87       ]                                │
+│ [ ✓ Xác nhận kết quả ]                                                │
+│                                                                        │
+│ ────────────────────────────────────────────────────────────────────── │
+│ ✅ Đã hoàn thành Câu 1                                                 │
+│ [ ➡️ Làm Câu 2 ]                                                       │
 └────────────────────────────────────────────────────────────────────────┘
 ```
 
-#### Chi tiết tương tác của Visual Countdown Timer:
-- **Tiến trình thời gian màu sắc động:**
-  * **Xanh lá tươi (`#10B981`):** Thời gian còn $30s - 60s$. Trạng thái thoải mái, tập trung tư duy.
-  * **Vàng hổ phách (`#F59E0B`):** Thời gian còn $15s - 30s$. Nhắc nhở sắp hết mốc Tốc độ vàng.
-  * **Đỏ cảnh báo nhấp nháy (`#EF4444` pulse):** Thời gian dưới $15s$. Báo hiệu học sinh chuẩn bị chốt số.
-- **Tự động chuyển pha khi hết giờ:**
-  * Khi hết 60s ở Pha 1: Input ước lượng được khóa (readonly), timer tự động reset về 60s cho Pha 2, con trỏ phím tự động nhảy sang ô Đặt tính chính xác.
-  * Khi hết 60s ở Pha 2: Input tính đúng được khóa, hệ thống hiển thị thông báo sẵn sàng nộp bài.
-- **Client-side Recording:** Đo lường chính xác `estimate_time_seconds` và `exact_time_seconds` gửi kèm payload nộp bài.
+#### Các quyết định thiết kế chi tiết:
+1. **Bộ đếm thời gian tách riêng từng câu (Isolated Per-Question Timer):**
+   - **Vấn đề sư phạm:** Trước đây đồng hồ đếm ngược có thể tạo cảm giác chạy liên tục khiến học sinh lớp 3 hoảng loạn, cuống quýt dẫn đến tính nhầm.
+   - **Giải pháp:** Thời gian của từng câu được cô lập hoàn toàn (60 giây cho Pha 1 và 60 giây cho Pha 2).
+   - Khi hoàn thành Pha 2 của Câu $k$, đồng hồ dừng lại hoàn toàn. Màn hình hiển thị hộp chuyển câu trực diện: *"Đã hoàn thành Câu $k$ — Bấm để làm tiếp Câu $k+1$"* kèm nút bấm nổi bật: `Làm Câu $k+1$`.
+   - **Thời gian chỉ bắt đầu tính khi học sinh chủ động bấm nút chuyển câu.** Điều này giúp học sinh hoàn toàn chủ động nhịp độ học tập, không bị áp lực cuốn theo đồng hồ.
+   - Các câu hỏi chưa làm tiếp theo được làm mờ nhẹ (`opacity-40 pointer-events-none`) kèm biểu tượng `🔒 Chưa mở` để học sinh tập trung tuyệt đối vào 1 câu duy nhất.
+   - Ở câu hỏi cuối cùng, hệ thống hiển thị nút dẫn trực tiếp đến phần Nộp Bài.
+
+2. **Gợi ý sư phạm tự động sau 30 giây (Scaffolding Hint after 30s):**
+   - **Cơ chế kích hoạt:** Tại Pha 1, nếu sau 30 giây đầu tiên học sinh chưa chốt đáp án ước lượng (`timeLeft <= 30s`), hộp gợi ý cách làm sẽ tự động xuất hiện trên màn hình (`#hint-box-qId`).
+   - **Nội dung gợi ý chuẩn SGK GDPT 2018:** Thuật toán tự động phân tích biểu thức toán học và đưa ra hướng dẫn làm tròn cụ thể:
+     - Phép cộng ($38 + 49$): Gợi ý làm tròn từng số lên/xuống hàng chục ($40 + 50$).
+     - Phép trừ ($72 - 38$): Gợi ý làm tròn số bị trừ và số trừ ($70 - 40$).
+     - Phép nhân ($29 \times 3$): Gợi ý làm tròn thừa số 2 chữ số ($30 \times 3$).
+     - Phép chia ($178 : 6$): Gợi ý làm tròn số bị chia về bội số tròn chục gần nhất ($180 : 6$).
+   - Đồng thời phát thông báo qua ARIA Live Region (`role="region" aria-live="polite"`) để học sinh khiếm thị nghe được gợi ý.
+
+3. **Công thái học kích thước & Phông chữ siêu to (Primary School Ergonomics):**
+   - **Khung phép tính:** Đóng khung thẻ màu xanh mint nổi bật, chữ số phép tính cực to (`text-3xl sm:text-4xl lg:text-5xl font-black text-primary`), giúp học sinh quan sát rõ ràng kể cả khi ngồi cách xa màn hình.
+   - **Ô nhập liệu:** Tăng chiều cao lên `h-16 sm:h-20` (64px - 80px), cỡ chữ số `text-2xl sm:text-3xl font-extrabold text-center tracking-widest`, bo tròn góc `rounded-2xl`, viền dày rõ ràng `border-2` kèm đổ bóng nhẹ `shadow-inner`.
+   - **Nút bấm thao tác:** Chiều cao `h-16` (64px), padding lớn `px-6 sm:px-8`, chữ `text-base sm:text-lg font-extrabold`, hiệu ứng đổ bóng 3D bấm chìm `shadow-[0_4px_0_0_...] active:translate-y-0.5`, tương thích hoàn hảo với màn hình cảm ứng tablet/iPad của trường tiểu học.
+   - **Nút Nộp Bài chung:** Nâng cấp lên `h-16 sm:h-18 font-black text-lg sm:text-xl shadow-[0_5px_0_0_#005320]`.
+
+4. **Tiến trình đổi 3 màu trực quan (Visual Color-Coded Countdown):**
+   - **Xanh lá tươi (`#10B981`):** Thời gian còn $31s - 60s$. Thoải mái nhẩm tính.
+   - **Vàng hổ phách (`#F59E0B`):** Thời gian còn $16s - 30s$. Xuất hiện gợi ý Ong Vàng hỗ trợ.
+   - **Đỏ cảnh báo nhấp nháy (`#EF4444` pulse):** Thời gian còn dưới $15s$. Báo hiệu sắp hết giờ để học sinh gõ số.
+
+5. **Chấm điểm & Hiển thị đáp án, nhận xét tức thì ngay khi xong từng câu (Instant Feedback):**
+   - **Vấn đề sư phạm:** Nếu đợi đến khi nộp toàn bộ 16 câu mới hiển thị đáp án, học sinh sẽ quên mất mạch suy luận của các câu đầu, làm giảm hiệu quả học tập.
+   - **Giải pháp:** Ngay khi học sinh hoàn thành xong Pha 2 của Câu $k$, hệ thống gọi API `POST /api/questions/:id/check` trên server để chấm tức thì và hiển thị ngay trên thẻ câu hỏi:
+     * Huy hiệu đạt được (Vàng 🥇, Bạc 🥈, Đồng 🥉, Khuyến khích 🌱, Cần cố gắng ✏️) kèm bảng điểm chi tiết 2 pha.
+     * Đối chiếu trực quan: Kết quả chính xác và Ước lượng chuẩn SGK (số tròn chục).
+     * Nhận xét sư phạm chi tiết cho Pha 1 (tư duy làm tròn) và Pha 2 (kỹ năng đặt tính).
+     * Lời giải & mẹo làm tròn SGK.
+   - Học sinh nhìn nhận kết quả ngay tại chỗ, rút kinh nghiệm tức thì rồi mới bấm chuyển sang câu tiếp theo. Khi làm xong toàn bộ bài, nút Nộp Bài sẽ tổng kết điểm và lưu lượt làm bài vào CSDL SQLite.
 
 ### 3. Phản hồi huy hiệu logic (Logic Badges) & Gợi ý sư phạm cá nhân hóa (B-06)
 Sau khi nộp bài, mỗi thẻ câu hỏi hiển thị bảng tổng kết chi tiết gồm huy hiệu đạt được và gợi ý sư phạm 2 tầng:

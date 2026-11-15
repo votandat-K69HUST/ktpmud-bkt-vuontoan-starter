@@ -7,6 +7,7 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const db = require('./db');
+const scoring = require('./scoring');
 const { setAuthCookie, clearAuthCookie, requireAuth, requireTeacher } = require('./auth');
 
 const router = express.Router();
@@ -155,12 +156,102 @@ router.get('/curriculum', (req, res) => {
 
 /* ---------------- Câu hỏi (không kèm đáp án) ---------------- */
 router.get('/question-sets/:setId/questions', requireAuth, (req, res) => {
-  const rows = db.prepare('SELECT id,type,prompt,options_json,points,category FROM questions WHERE set_id=? ORDER BY sort_order').all(req.params.setId);
+  const rows = db.prepare('SELECT id,type,prompt,options_json,points,category,sort_order FROM questions WHERE set_id=? ORDER BY sort_order').all(req.params.setId);
   if (!rows.length) return res.status(404).json({ error: 'Không tìm thấy bộ câu hỏi.' });
-  res.json({ setId: req.params.setId, questions: rows.map(r => ({ ...r, options: r.options_json ? JSON.parse(r.options_json) : undefined, options_json: undefined })) });
+  res.json({
+    setId: req.params.setId,
+    questions: rows.map(r => ({
+      id: r.id,
+      type: r.type,
+      prompt: r.prompt,
+      points: r.points,
+      category: r.category,
+      options: r.options_json ? JSON.parse(r.options_json) : undefined
+    }))
+  });
 });
 
 /* ---------------- Nộp bài & chấm điểm trên server ---------------- */
+// Đánh giá 1 câu hỏi đơn lẻ (Dùng chung cho cả Chấm tức thì từng câu và Nộp toàn bộ bài)
+function evaluateSingleQuestion(q, studentAnswer) {
+  if (q.type === 'estimate') {
+    let rule = {};
+    try {
+      rule = typeof q.correct_answer === 'object' ? q.correct_answer : JSON.parse(q.correct_answer || '{}');
+    } catch (_) {
+      rule = {};
+    }
+    rule.points = q.points;
+    rule.prompt = q.prompt;
+
+    if (!rule.operation || rule.operand1 == null || rule.operand2 == null) {
+      const match = String(q.prompt).match(/(\d+)\s*([\+\-\*×x\:\/÷])\s*(\d+)/);
+      if (match) {
+        if (rule.operand1 == null) rule.operand1 = Number(match[1]);
+        if (!rule.operation) {
+          const op = match[2];
+          rule.operation = (op === '×' || op === 'x') ? '*' : (op === ':' || op === '÷') ? '/' : op;
+        }
+        if (rule.operand2 == null) rule.operand2 = Number(match[3]);
+      }
+    }
+
+    if (rule.gold_anchor != null && rule.rounded_anchor == null) {
+      rule.rounded_anchor = rule.gold_anchor;
+    }
+    if (rule.silver_anchors != null && rule.silverAnchors == null) {
+      rule.silverAnchors = rule.silver_anchors;
+    }
+    if (rule.bounding_anchors != null && rule.boundingAnchors == null) {
+      rule.boundingAnchors = rule.bounding_anchors;
+    }
+
+    const evalRes = scoring.evaluateEstimateQuestion(rule, studentAnswer);
+
+    return {
+      questionId: q.id,
+      type: 'estimate',
+      correct: evalRes.isFullyCorrect,
+      isFullyCorrect: evalRes.isFullyCorrect,
+      isEstimateOk: evalRes.isEstimateOk,
+      isExactOk: evalRes.isExactOk,
+      anchorTier: evalRes.anchorTier,
+      badge: evalRes.badge,
+      timeEval: evalRes.timeEval,
+      scoringBreakdown: evalRes.scoringBreakdown,
+      earnedPoints: evalRes.earnedPoints,
+      maxPoints: q.points,
+      given: studentAnswer,
+      expected: evalRes.expected,
+      feedbackEstimate: evalRes.feedbackEstimate,
+      feedbackExact: evalRes.feedbackExact,
+      explanation: evalRes.explanation
+    };
+  } else {
+    const given = studentAnswer == null ? '' : String(studentAnswer).trim().toLowerCase();
+    const ok = given === String(q.correct_answer).trim().toLowerCase();
+    return {
+      questionId: q.id,
+      type: q.type,
+      correct: ok,
+      isFullyCorrect: ok,
+      earnedPoints: ok ? q.points : 0,
+      maxPoints: q.points,
+      given: studentAnswer,
+      correctAnswer: q.correct_answer
+    };
+  }
+}
+
+// Chấm điểm tức thì ngay khi hoàn thành từng câu (Instant Feedback theo yêu cầu sư phạm)
+router.post('/questions/:id/check', requireAuth, (req, res) => {
+  const q = db.prepare('SELECT * FROM questions WHERE id=?').get(req.params.id);
+  if (!q) return res.status(404).json({ error: 'Không tìm thấy câu hỏi.' });
+  const { answer } = req.body || {};
+  const detail = evaluateSingleQuestion(q, answer);
+  res.json({ detail });
+});
+
 // Metadata bộ bài lấy từ bảng question_sets (giáo viên tạo bộ mới là nộp/chấm được ngay)
 function setMeta(setId) {
   const s = db.prepare('SELECT * FROM question_sets WHERE id=?').get(setId);
@@ -174,12 +265,13 @@ router.post('/submissions', requireAuth, (req, res) => {
   let earned = 0, max = 0, correct = 0;
   const detail = questions.map(q => {
     max += q.points;
-    const given = answers[q.id] == null ? '' : String(answers[q.id]).trim().toLowerCase();
-    const ok = given === String(q.correct_answer).trim().toLowerCase();
-    if (ok) { earned += q.points; correct++; }
-    return { questionId: q.id, correct: ok, correctAnswer: q.correct_answer };
+    const item = evaluateSingleQuestion(q, answers ? answers[q.id] : undefined);
+    earned += (item.earnedPoints != null ? item.earnedPoints : (item.correct ? q.points : 0));
+    if (item.isFullyCorrect || item.isExactOk || (item.type !== 'estimate' && item.correct)) correct++;
+    return item;
   });
-  const percent = max ? Math.round((earned / max) * 100) : 0;
+  earned = Math.round(earned * 100) / 100;
+  const percent = max ? Math.min(100, Math.round((earned / max) * 100)) : 0;
 
   // Sao thưởng chỉ tính trên phần % tiến bộ so với điểm cao nhất cũ (chống "cày" sao bằng cách nộp lại)
   const old = db.prepare('SELECT * FROM progress WHERE user_id=? AND lesson_id=?').get(req.user.id, meta.lessonId);
@@ -197,7 +289,16 @@ router.post('/submissions', requireAuth, (req, res) => {
   });
   tx();
   const me = db.prepare('SELECT total_stars FROM users WHERE id=?').get(req.user.id);
-  res.json({ scorePercent: percent, correctCount: correct, totalCount: questions.length, starsEarned, totalStars: me.total_stars, detail });
+  res.json({
+    scorePercent: percent,
+    correctCount: correct,
+    totalCount: questions.length,
+    starsEarned,
+    totalStars: me.total_stars,
+    earnedPoints: earned,
+    maxPoints: max,
+    detail
+  });
 });
 
 /* ---------------- Bảng xếp hạng (tính từ dữ liệu thật) ---------------- */

@@ -21,7 +21,12 @@ app.get('/curriculum', (req, res) => res.sendFile(path.join(__dirname, '..', 'pu
 
 app.use((req, res) => res.status(404).json({ error: 'Không tìm thấy.' }));
 
-app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🌱 Vườn Toán Lớp 3 đang chạy tại http://localhost:${PORT}`);
-  console.log('   Tài khoản mẫu: hocsinh01 / 123456  •  giaovien01 / 123456');
-});
+let server = null;
+if (require.main === module) {
+  server = app.listen(PORT, '0.0.0.0', () => {
+    console.log(`🌱 Vườn Toán Lớp 3 đang chạy tại http://localhost:${PORT}`);
+    console.log('   Tài khoản mẫu: hocsinh01 / 123456  •  giaovien01 / 123456');
+  });
+}
+
+module.exports = app;

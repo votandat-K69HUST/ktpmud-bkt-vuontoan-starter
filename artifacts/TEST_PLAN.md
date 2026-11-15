@@ -155,9 +155,9 @@ File kiểm thử: `tests/unit/scoring.test.js`.
 |:---|:---|:---:|:---:|:---:|:---:|:---|
 | **UT-ANC-01** | **Điểm neo Vàng (Gold Anchor)** | $90$ ($40 + 50$) | **100%** | **5.50 / 5.5** | 🥇 Vàng | *"Xuất sắc! Em ước lượng chuẩn theo điểm neo SGK (làm tròn số tròn chục)."* |
 | **UT-ANC-02** | **Điểm neo Bạc (Silver 1 - Làm tròn 1 số)** | $89$ ($40 + 49$) hoặc $88$ ($38 + 50$) | **75%** | **4.13 / 5.5** | 🥈 Bạc | *"Rất tốt! Em ước lượng theo chiến lược làm tròn linh hoạt hợp lý."* |
-| **UT-ANC-03** | **Điểm neo Bạc (Silver 2 - Cận làm tròn)** | $70$ ($30 + 40$ cùng floor hàng chục) | **75%** | **4.13 / 5.5** | 🥈 Bạc | *"Rất tốt! Em ước lượng theo chiến lược làm tròn linh hoạt hợp lý."* |
-| **UT-ANC-04** | **Nhập Kết quả Đúng vào ô ước lượng** | $87$ (Bằng chính xác $A_{exact}$, số lẻ) | **50%** | **2.75 / 5.5** | 🥉 Đồng | *"Em tính nhẩm ra đúng kết quả! Tuy nhiên, ở bước ước lượng, em nên làm tròn thành số tròn chục (ví dụ 90) để kiểm tra nhanh nhé! 💡"* |
-| **UT-ANC-05** | **Dung sai Không theo neo (Đoán mò số lẻ)** | $83$ hoặc $91$ (Nằm trong dải $[74, 100]$ nhưng không theo logic neo) | **35%** | **1.93 / 5.5** | 🌱 Khuyến khích | *"Ước lượng nằm trong khoảng gần đúng. Gợi ý: Em hãy làm tròn về số tròn chục (90) để nhẩm nhanh và chính xác hơn nhé! 🌱"* |
+| **UT-ANC-03** | **Điểm neo Cận trên / Cận dưới (Bounding Anchor)** | $70$ ($30 + 40$ cùng floor hàng chục) | **50%** | **2.75 / 5.5** | 🥉 Đồng | *"Tốt! Em ước lượng theo cận trên/dưới hợp lý. Gợi ý: Em làm tròn cả hai số theo quy tắc SGK để nhẩm nhé! 💡"* |
+| **UT-ANC-04** | **Nhập Kết quả Đúng vào ô ước lượng (Exact Match in Estimate)** | $87$ (Bằng chính xác $A_{exact}$, số lẻ) | **50%** | **2.75 / 5.5** | 🥉 Đồng | *"Em tính nhẩm ra đúng kết quả! Tuy nhiên, ở bước ước lượng, em nên làm tròn thành số tròn chục (ví dụ 90) để kiểm tra nhanh nhé! 💡"* |
+| **UT-ANC-05** | **Dung sai Không theo neo (Đoán mò số lẻ trong dải dung sai)** | $83$ hoặc $91$ (Nằm trong dải $[74, 100]$ nhưng không theo logic neo) | **35%** | **1.93 / 5.5** | 🌱 Khuyến khích | *"Ước lượng nằm trong khoảng gần đúng. Gợi ý: Em hãy làm tròn về số tròn chục (90) để nhẩm nhanh và chính xác hơn nhé! 🌱"* |
 | **UT-ANC-06** | **Nằm ngoài dải dung sai** | $60$ hoặc $110$ (Vượt quá dung sai $\pm 15\%$ và ngoài khoảng neo) | **0%** | **0.00 / 5.5** | ❌ Cố gắng | *"Ước lượng chưa thật sát. Em hãy làm tròn các số về hàng chục gần nhất để được 90 nhé! ✏️"* |
 
 ### 3.5. Nhóm ca kiểm thử Thưởng tốc độ suy luận (Time-Bonus Tiers Matrix)
@@ -183,6 +183,7 @@ Quy chuẩn câu hỏi 10 điểm ($P = 10$): Pha 1 tối đa 7.0 điểm (5.5 B
 | **UT-SCR-02** | **Tư duy tốt, tốc độ tiêu chuẩn:** Gold Anchor ($t_1 = 25s$) + Tính đúng ($t_2 = 35s$) | $5.5 + 0.75 = \mathbf{6.25}$ | $2.5 + 0.25 = \mathbf{2.75}$ | **9.0 / 10** (90%) | 🥈 **Huy hiệu Bạc** |
 | **UT-SCR-03** | **Điểm neo Bạc + Tính đúng:** Silver Anchor ($t_1 \le 15s$) + Tính đúng ($t_2 \le 20s$) | $4.13 + 1.5 = \mathbf{5.63}$ | $2.5 + 0.5 = \mathbf{3.0}$ | **8.63 / 10** (86.3%) | 🥈 **Huy hiệu Bạc** |
 | **UT-SCR-04** | **Điền đáp án đúng vào ước lượng:** $E = A_{exact}$ ($t_1 \le 15s$) + Tính đúng ($t_2 \le 20s$) | $2.75 + 1.5 = \mathbf{4.25}$ | $2.5 + 0.5 = \mathbf{3.0}$ | **7.25 / 10** (72.5%) | 🥉 **Huy hiệu Đồng** |
+| **UT-SCR-04b** | **Ước lượng cận trên/dưới:** $E \in BoundingAnchors$ ($t_1 \le 15s$) + Tính đúng ($t_2 \le 20s$) | $2.75 + 1.5 = \mathbf{4.25}$ | $2.5 + 0.5 = \mathbf{3.0}$ | **7.25 / 10** (72.5%) | 🥉 **Huy hiệu Đồng** |
 | **UT-SCR-05** | **Đoán mò số lẻ trong dung sai:** Dung sai non-anchor ($t_1 = 20s$) + Tính đúng ($t_2 = 25s$) | $1.93 + 0.75 = \mathbf{2.68}$ | $2.5 + 0.25 = \mathbf{2.75}$ | **5.43 / 10** (54.3%) | 🌱 **Huy hiệu Khuyến khích** |
 | **UT-SCR-06** | **Ước lượng đúng nhưng tính sai:** Gold Anchor ($t_1 \le 15s$) + Tính sai kết quả | $5.5 + 1.5 = \mathbf{7.0}$ | $0.0 + 0.0 = \mathbf{0.0}$ | **7.0 / 10** (70.0%) | ⚠️ Giữ trọn 70% điểm ước lượng |
 | **UT-SCR-07** | **Ước lượng sai nhưng tính đúng:** Ngoài dung sai ($t_1 = 10s$) + Tính đúng ($t_2 \le 20s$) | $0.0 + 0.0 = \mathbf{0.0}$ | $2.5 + 0.5 = \mathbf{3.0}$ | **3.0 / 10** (30.0%) | ✏️ Chỉ nhận 30% điểm tính đúng |
@@ -210,18 +211,22 @@ Sử dụng tài khoản synthetic có sẵn trong CSDL (`hocsinh01` / `MatKhau1
 | **IT-API-04** | Bền vững dữ liệu (Reload / F5): Gọi `GET /api/me/progress` sau khi nộp bài | Tiến độ bài học và số sao thưởng của học sinh vẫn được bảo toàn nguyên vẹn. | **B-05** |
 | **IT-API-05** | Gọi `POST /api/submissions` với payload chứa chữ hoặc thiếu trường | Trả về HTTP 400 Bad Request kèm thông báo lỗi rõ ràng, không làm crash server. | Robustness |
 | **IT-API-06** | Gọi `POST /api/submissions` khi client cũ hoặc payload thiếu `estimate_time_seconds` / `exact_time_seconds` | Server tự động fallback về thời gian cơ bản (60s), chấm điểm an toàn (0% time bonus), không báo lỗi HTTP 500. | Robustness & BC |
+| **IT-CHK-01** | `POST /api/questions/:id/check` với câu hỏi vừa làm xong | Trả về HTTP 200 kèm đáp án chính xác, điểm neo SGK, huy hiệu và nhận xét tức thì; từ chối 401 nếu chưa đăng nhập. | **B-04, B-06** |
 
 ---
 
-## 5. Kế hoạch kiểm tra Giao diện & Khả năng tiếp cận (Manual / UI A11y)
+## 5. Kế hoạch kiểm tra Giao diện & Khả năng tiếp cận (Manual / UI A11y & Ergonomics)
 
 Tiến hành kiểm thử thao tác trực tiếp trên trình duyệt theo kịch bản:
 
 | Mã Test | Nội dung kiểm tra | Tiêu chuẩn đạt | Thỏa mãn AC |
 |---|---|---|---|
-| **UI-A11Y-01** | **Điều khiển hoàn toàn bằng bàn phím (No-Mouse flow):**<br>- Nhấn `Tab` để di chuyển focus vào ô *"Ước lượng"*.<br>- Nhập số, nhấn `Enter` để chốt pha 1 và tự động nhảy focus sang ô *"Tính kết quả đúng"*.<br>- Nhập kết quả đặt tính, nhấn `Enter` lần 2 để kích hoạt nút Nộp bài. | Toàn bộ luồng làm bài thực hiện mượt mà không cần dùng chuột; vòng lặp focus không bị kẹt. | **B-12** |
-| **UI-A11Y-02** | **Chỉ báo tiêu điểm (Focus Ring Visual):** | Khi focus bằng phím Tab, viền input hiển thị rõ nét (độ tương phản cao `ring-2 ring-primary-500`), hỗ trợ học sinh thị lực kém. | **B-12** |
-| **UI-A11Y-03** | **Hiển thị trực quan phản hồi 2 tầng (Feedback Banner):** | Sau khi nộp bài, hiển thị 2 thẻ/badge màu sắc riêng biệt: Huy hiệu ước lượng (Xanh lá nếu hợp lý, Vàng nếu hơi lệch) và Huy hiệu tính đúng (Xanh lá nếu đúng, Đỏ nếu sai) kèm lời khuyên giải thích sư phạm. | **B-06** |
+| **UI-TIMER-01** | **Thời gian độc lập từng câu (Isolated Per-Question Timer):**<br>- Chỉ Câu 1 chạy đồng hồ 60s khi mở bài.<br>- Các câu còn lại bị khóa mờ (`opacity-40 pointer-events-none`).<br>- Khi làm xong Câu 1, đồng hồ dừng hoàn toàn; xuất hiện nút *"Làm Câu tiếp theo"*. Thời gian chỉ bắt đầu chạy khi học sinh chủ động bấm nút này. | Học sinh hoàn toàn làm chủ nhịp độ làm bài, không bị cuống do đồng hồ chạy liên tục; nghỉ ngơi giữa các câu không bị tính vào thời gian làm bài. | **B-01, B-12** |
+| **UI-HINT-01** | **Gợi ý sư phạm sau 30 giây (Scaffolding Hint after 30s):**<br>- Ở Pha 1, khi đồng hồ trôi qua 30s đầu (thời gian còn $\le 30s$) mà học sinh chưa chốt ước lượng, kiểm tra xem hộp mách nước của Ong Vàng có tự động mở ra không. | Hộp gợi ý Ong Vàng xuất hiện mượt mà, đưa ra hướng dẫn làm tròn số cụ thể theo đúng phép tính (Cộng/Trừ/Nhân/Chia); ARIA Live Region thông báo cho học sinh khiếm thị. | **B-06, B-12** |
+| **UI-ERGO-01** | **Công thái học nút bấm & Chữ số siêu to (Primary School Ergonomics):**<br>- Kiểm tra kích thước ô nhập liệu (`h-16 sm:h-20`), phông số (`text-2xl sm:text-3xl font-extrabold`).<br>- Khung đề bài phép tính to nổi bật (`text-3xl sm:text-4xl lg:text-5xl font-black`).<br>- Nút bấm xác nhận và nút Nộp bài cao 64px - 72px với hiệu ứng nổi 3D. | Học sinh lớp 3 (8–9 tuổi) dễ nhìn từ xa, thao tác chạm/click cực kỳ thoải mái và chính xác trên máy tính bảng hoặc laptop cảm ứng. | **B-12** |
+| **UI-A11Y-01** | **Điều khiển hoàn toàn bằng bàn phím (No-Mouse flow):**<br>- Nhấn `Tab` để di chuyển focus vào ô *"Ước lượng"*.<br>- Nhập số, nhấn `Enter` để chốt pha 1 và tự động nhảy focus sang ô *"Tính kết quả đúng"*.<br>- Nhập kết quả đặt tính, nhấn `Enter` lần 2 để chốt kết quả và hiện nút chuyển câu. | Toàn bộ luồng làm bài thực hiện mượt mà không cần dùng chuột; vòng lặp focus không bị kẹt. | **B-12** |
+| **UI-A11Y-02** | **Chỉ báo tiêu điểm (Focus Ring Visual):** | Khi focus bằng phím Tab, viền input hiển thị rõ nét (độ tương phản cao `ring-4 ring-primary-fixed focus:border-primary`), hỗ trợ học sinh thị lực kém. | **B-12** |
+| **UI-A11Y-03** | **Hiển thị trực quan phản hồi 2 tầng (Feedback Banner):** | Sau khi nộp bài, hiển thị thẻ tổng kết chi tiết gồm: Huy hiệu phân cấp (Vàng 🥇, Bạc 🥈, Đồng 🥉, Khuyến khích 🌱), điểm số chi tiết từng pha (Điểm đúng + Tốc độ) và lời khuyên giải thích sư phạm từ Ong Vàng. | **B-06** |
 | **UI-A11Y-04** | **Trải nghiệm trên màn hình nhỏ (Mobile/Tablet):** | Bàn phím số ảo hiển thị đúng trên thiết bị cảm ứng khi focus vào ô số (`inputmode="numeric"`). | Usability |
 
 ---

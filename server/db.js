@@ -113,14 +113,28 @@ try { db.exec('ALTER TABLE users ADD COLUMN google_id TEXT'); } catch (_) {}
 
 /** Đợt 2: nạp metadata bộ câu hỏi cho cả DB cũ (đã tạo ở Đợt 1) lẫn DB mới. */
 function seedQuestionSets() {
-  const { c } = db.prepare('SELECT COUNT(*) AS c FROM question_sets').get();
-  if (c > 0) return;
   const seed = JSON.parse(fs.readFileSync(SEED_PATH, 'utf8'));
-  const ins = db.prepare(`INSERT OR IGNORE INTO question_sets (id,title,kind,lesson_id,star_reward,duration_minutes) VALUES (?,?,?,?,?,?)`);
-  for (const [id, set] of Object.entries(seed.questionSets)) {
-    ins.run(id, set.title || id, set.kind || 'exercise', set.lessonId || null,
-      set.kind === 'exam' ? 100 : 40, set.durationMinutes || 0);
-  }
+  const insSet = db.prepare(`INSERT OR REPLACE INTO question_sets (id,title,kind,lesson_id,star_reward,duration_minutes) VALUES (?,?,?,?,?,?)`);
+  const insQuestion = db.prepare(`INSERT OR REPLACE INTO questions (id,set_id,lesson_id,type,prompt,options_json,correct_answer,points,category,sort_order)
+    VALUES (@id,@setId,@lessonId,@type,@prompt,@optionsJson,@correctAnswer,@points,@category,@sortOrder)`);
+
+  const tx = db.transaction(() => {
+    for (const [id, set] of Object.entries(seed.questionSets)) {
+      insSet.run(id, set.title || id, set.kind || 'exercise', set.lessonId || null,
+        set.starReward != null ? set.starReward : (set.kind === 'exam' ? 100 : 40), set.durationMinutes || 0);
+
+      // Đảm bảo bộ đề uoc-luong-toan-lop-3 và các câu hỏi luôn được nạp đầy đủ vào bảng questions
+      if (Array.isArray(set.questions) && (id === 'uoc-luong-toan-lop-3' || !db.prepare('SELECT 1 FROM questions WHERE set_id=? LIMIT 1').get(id))) {
+        set.questions.forEach((q, i) => insQuestion.run({
+          id: q.id, setId: id, lessonId: set.lessonId, type: q.type, prompt: q.prompt,
+          optionsJson: q.options ? JSON.stringify(q.options) : null,
+          correctAnswer: q.correctAnswer, points: q.points || 1,
+          category: q.category || '', sortOrder: i + 1,
+        }));
+      }
+    }
+  });
+  tx();
 }
 
 function seedIfEmpty() {

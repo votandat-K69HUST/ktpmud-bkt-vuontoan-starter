@@ -225,13 +225,21 @@
 
     let actionsHtml = '';
     if (info.canPractice) {
+      const isEstimateLesson = targetLesson.number === 16;
       actionsHtml = `
+        ${isEstimateLesson ? `
+        <div class="mt-2">
+          <a href="lesson.html?lesson=bai-16&set=uoc-luong-toan-lop-3" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-extrabold text-center shadow-md active:translate-y-0.5 transition-all flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined text-[22px]">psychology</span>
+            <span>Chuyên đề: Ước lượng trước khi tính đúng (70/30)</span>
+          </a>
+        </div>` : ''}
         <div class="flex flex-col sm:flex-row gap-2.5 mt-2">
           <a href="exercise.html?lesson=bai-${targetLesson.number}" class="flex-1 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-center shadow-md active:translate-y-0.5 transition-all">Luyện tập Cơ bản</a>
           <a href="exercise.html?lesson=bai-${targetLesson.number}&level=nang-cao" class="flex-1 py-3 px-4 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-center shadow-md active:translate-y-0.5 transition-all">Nâng cao</a>
         </div>
         <div class="flex flex-col sm:flex-row gap-2.5">
-          <a href="lesson.html?lesson=bai-${targetLesson.number}" class="flex-1 py-3 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold text-center transition-all">Ôn bài SGK</a>
+          <a href="lesson.html?lesson=bai-${targetLesson.number}&set=${isEstimateLesson ? 'uoc-luong-toan-lop-3' : 'bai-' + targetLesson.number + '-on-tap'}" class="flex-1 py-3 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-bold text-center transition-all">Ôn bài SGK</a>
           <a href="game.html" class="flex-1 py-3 px-4 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 font-bold text-center transition-all">Trò chơi toán</a>
         </div>
       `;

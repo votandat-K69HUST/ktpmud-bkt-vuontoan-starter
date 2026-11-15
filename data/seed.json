@@ -3019,6 +3019,143 @@
           "points": 5
         }
       ]
+    },
+    "uoc-luong-toan-lop-3": {
+      "lessonId": "bai-16",
+      "title": "Phiếu luyện tập: Ước lượng trước khi tính đúng (Cộng, Trừ, Nhân, Chia)",
+      "kind": "exercise",
+      "starReward": 50,
+      "durationMinutes": 20,
+      "questions": [
+        {
+          "id": "est-add-01",
+          "type": "estimate",
+          "prompt": "38 + 49 = ?",
+          "points": 10,
+          "category": "Ước lượng phép cộng",
+          "correctAnswer": "{\"exact\":87,\"gold_anchor\":90,\"silver_anchors\":[88,89],\"bounding_anchors\":[70],\"estimate_min\":74,\"estimate_max\":100,\"explanation\":\"Làm tròn 38 lên 40, làm tròn 49 lên 50. Ta nhẩm 40 + 50 = 90. Khi đặt tính: 38 + 49 = 87.\"}"
+        },
+        {
+          "id": "est-add-02",
+          "type": "estimate",
+          "prompt": "54 + 27 = ?",
+          "points": 10,
+          "category": "Ước lượng phép cộng",
+          "correctAnswer": "{\"exact\":81,\"gold_anchor\":80,\"silver_anchors\":[77,84],\"bounding_anchors\":[70,90],\"estimate_min\":70,\"estimate_max\":95,\"explanation\":\"Làm tròn 54 xuống 50, làm tròn 27 lên 30. Ta nhẩm 50 + 30 = 80. Khi đặt tính: 54 + 27 = 81.\"}"
+        },
+        {
+          "id": "est-add-03",
+          "type": "estimate",
+          "prompt": "61 + 28 = ?",
+          "points": 10,
+          "category": "Ước lượng phép cộng",
+          "correctAnswer": "{\"exact\":89,\"gold_anchor\":90,\"silver_anchors\":[88,91],\"bounding_anchors\":[80],\"estimate_min\":75,\"estimate_max\":100,\"explanation\":\"Làm tròn 61 xuống 60, làm tròn 28 lên 30. Ta nhẩm 60 + 30 = 90. Khi đặt tính: 61 + 28 = 89.\"}"
+        },
+        {
+          "id": "est-add-04",
+          "type": "estimate",
+          "prompt": "45 + 36 = ?",
+          "points": 10,
+          "category": "Ước lượng phép cộng",
+          "correctAnswer": "{\"exact\":81,\"gold_anchor\":90,\"silver_anchors\":[85,86],\"bounding_anchors\":[70,80],\"estimate_min\":70,\"estimate_max\":95,\"explanation\":\"Làm tròn 45 lên 50 (hàng đơn vị là 5), làm tròn 36 lên 40. Ta nhẩm 50 + 40 = 90. Khi đặt tính: 45 + 36 = 81.\"}"
+        },
+        {
+          "id": "est-sub-01",
+          "type": "estimate",
+          "prompt": "72 - 38 = ?",
+          "points": 10,
+          "category": "Ước lượng phép trừ",
+          "correctAnswer": "{\"exact\":34,\"gold_anchor\":30,\"silver_anchors\":[32],\"bounding_anchors\":[40],\"estimate_min\":25,\"estimate_max\":42,\"explanation\":\"Làm tròn 72 xuống 70, làm tròn 38 lên 40. Ta nhẩm 70 - 40 = 30. Khi đặt tính: 72 - 38 = 34.\"}"
+        },
+        {
+          "id": "est-sub-02",
+          "type": "estimate",
+          "prompt": "85 - 29 = ?",
+          "points": 10,
+          "category": "Ước lượng phép trừ",
+          "correctAnswer": "{\"exact\":56,\"gold_anchor\":60,\"silver_anchors\":[55,61],\"bounding_anchors\":[50],\"estimate_min\":47,\"estimate_max\":68,\"explanation\":\"Làm tròn 85 lên 90 (hàng đơn vị là 5), làm tròn 29 lên 30. Ta nhẩm 90 - 30 = 60. Khi đặt tính: 85 - 29 = 56.\"}"
+        },
+        {
+          "id": "est-sub-03",
+          "type": "estimate",
+          "prompt": "91 - 43 = ?",
+          "points": 10,
+          "category": "Ước lượng phép trừ",
+          "correctAnswer": "{\"exact\":48,\"gold_anchor\":50,\"silver_anchors\":[47,51],\"bounding_anchors\":[40],\"estimate_min\":40,\"estimate_max\":58,\"explanation\":\"Làm tròn 91 xuống 90, làm tròn 43 xuống 40. Ta nhẩm 90 - 40 = 50. Khi đặt tính: 91 - 43 = 48.\"}"
+        },
+        {
+          "id": "est-sub-04",
+          "type": "estimate",
+          "prompt": "67 - 21 = ?",
+          "points": 10,
+          "category": "Ước lượng phép trừ",
+          "correctAnswer": "{\"exact\":46,\"gold_anchor\":50,\"silver_anchors\":[47,49],\"bounding_anchors\":[40],\"estimate_min\":38,\"estimate_max\":55,\"explanation\":\"Làm tròn 67 lên 70, làm tròn 21 xuống 20. Ta nhẩm 70 - 20 = 50. Khi đặt tính: 67 - 21 = 46.\"}"
+        },
+        {
+          "id": "est-mul-01",
+          "type": "estimate",
+          "prompt": "29 × 3 = ?",
+          "points": 10,
+          "category": "Ước lượng phép nhân",
+          "correctAnswer": "{\"exact\":87,\"gold_anchor\":90,\"silver_anchors\":[85],\"bounding_anchors\":[60],\"estimate_min\":75,\"estimate_max\":105,\"explanation\":\"Làm tròn 29 thành 30. Ta nhẩm 30 × 3 = 90. Khi đặt tính: 29 × 3 = 87.\"}"
+        },
+        {
+          "id": "est-mul-02",
+          "type": "estimate",
+          "prompt": "48 × 4 = ?",
+          "points": 10,
+          "category": "Ước lượng phép nhân",
+          "correctAnswer": "{\"exact\":192,\"gold_anchor\":200,\"silver_anchors\":[180],\"bounding_anchors\":[160],\"estimate_min\":160,\"estimate_max\":230,\"explanation\":\"Làm tròn 48 thành 50. Ta nhẩm 50 × 4 = 200. Khi đặt tính: 48 × 4 = 192.\"}"
+        },
+        {
+          "id": "est-mul-03",
+          "type": "estimate",
+          "prompt": "19 × 5 = ?",
+          "points": 10,
+          "category": "Ước lượng phép nhân",
+          "correctAnswer": "{\"exact\":95,\"gold_anchor\":100,\"silver_anchors\":[90],\"bounding_anchors\":[50],\"estimate_min\":80,\"estimate_max\":115,\"explanation\":\"Làm tròn 19 thành 20. Ta nhẩm 20 × 5 = 100. Khi đặt tính: 19 × 5 = 95.\"}"
+        },
+        {
+          "id": "est-mul-04",
+          "type": "estimate",
+          "prompt": "82 × 4 = ?",
+          "points": 10,
+          "category": "Ước lượng phép nhân",
+          "correctAnswer": "{\"exact\":328,\"gold_anchor\":320,\"silver_anchors\":[330],\"bounding_anchors\":[360],\"estimate_min\":275,\"estimate_max\":375,\"explanation\":\"Làm tròn 82 thành 80. Ta nhẩm 80 × 4 = 320. Khi đặt tính: 82 × 4 = 328.\"}"
+        },
+        {
+          "id": "est-div-01",
+          "type": "estimate",
+          "prompt": "84 : 4 = ?",
+          "points": 10,
+          "category": "Ước lượng phép chia",
+          "correctAnswer": "{\"exact\":21,\"gold_anchor\":20,\"silver_anchors\":[22,23,25],\"bounding_anchors\":[],\"estimate_min\":17,\"estimate_max\":26,\"explanation\":\"Làm tròn 84 thành 80. Ta nhẩm 80 : 4 = 20. Khi đặt tính chia: 84 : 4 = 21.\"}"
+        },
+        {
+          "id": "est-div-02",
+          "type": "estimate",
+          "prompt": "178 : 6 = ?",
+          "points": 10,
+          "category": "Ước lượng phép chia",
+          "correctAnswer": "{\"exact\":29,\"gold_anchor\":30,\"silver_anchors\":[28,32],\"bounding_anchors\":[25],\"estimate_min\":24,\"estimate_max\":36,\"explanation\":\"Làm tròn 178 thành 180 (bội số của 6). Ta nhẩm 180 : 6 = 30. Kết quả tính: 178 : 6 = 29 (dư 4).\"}"
+        },
+        {
+          "id": "est-div-03",
+          "type": "estimate",
+          "prompt": "48 : 6 = ?",
+          "points": 10,
+          "category": "Ước lượng phép chia",
+          "correctAnswer": "{\"exact\":8,\"gold_anchor\":8,\"silver_anchors\":[7,9],\"bounding_anchors\":[10],\"estimate_min\":6,\"estimate_max\":10,\"explanation\":\"48 chia cho 6 bằng đúng 8 trong bảng chia 6.\"}"
+        },
+        {
+          "id": "est-div-04",
+          "type": "estimate",
+          "prompt": "245 : 8 = ?",
+          "points": 10,
+          "category": "Ước lượng phép chia",
+          "correctAnswer": "{\"exact\":30,\"gold_anchor\":30,\"silver_anchors\":[29,31],\"bounding_anchors\":[28,32],\"estimate_min\":25,\"estimate_max\":36,\"explanation\":\"Làm tròn 245 thành 240. Ta nhẩm 240 : 8 = 30. Kết quả tính: 245 : 8 = 30 (dư 5).\"}"
+        }
+      ]
     }
   }
 }

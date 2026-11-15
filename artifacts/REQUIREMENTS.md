@@ -28,12 +28,14 @@ Trong chương trình Giáo dục Phổ thông 2018 (Chương trình GDPT 2018) 
 - **Tự kiểm soát và phát hiện lỗi sai lớn (Error Detection & Self-Regulation):** Trong thực tế dạy học lớp 3, học sinh thường mắc các lỗi sai cơ bản như quên nhớ (trong phép cộng, phép trừ có nhớ), nhân nhầm hàng chục, hoặc ước lượng thương sai lệch quá xa trong phép chia. Khi có thói quen ước lượng nhẩm trước, nếu kết quả tính ra lệch xa so với con số ước lượng trong đầu, học sinh sẽ có phản xạ tự kiểm tra lại bài làm.
 - **Đổi mới trọng tâm sư phạm — Ước lượng là năng lực cốt lõi (Tỷ lệ điểm 70 / 30):** Thay vì xem ước lượng là bước phụ phụ thuộc, hệ thống thiết kế **ƯỚC LƯỢNG LÀ TRỌNG TÂM CHIẾM 70% TỔNG ĐIỂM** (gồm 55% Điểm Logic nền tảng + 15% Điểm thưởng tốc độ Time Bonus), trong khi **ĐẶT TÍNH ĐÚNG CHIẾM 30% TỔNG ĐIỂM** (25% Điểm Logic + 5% Điểm thưởng tốc độ Time Bonus). Trọng số này thúc đẩy mạnh mẽ tinh thần dám làm tròn, dám nhẩm tính nhanh của học sinh tiểu học.
 - **Bộ đếm thời gian thích ứng tối đa 60 giây mỗi pha (Adaptive Phase Countdown Timer):** Để rèn luyện phản xạ số học nhanh, mỗi pha làm bài (Pha 1: Ước lượng nhẩm; Pha 2: Đặt tính đúng) được trang bị bộ đếm ngược thời gian thích ứng tối đa 60 giây. Hoàn thành càng nhanh càng nhận được nhiều điểm thưởng tốc độ (Time Bonus). Khi hết 60 giây, hệ thống tự động khóa ô nhập và chuyển pha an toàn, không làm mất bài thi của học sinh.
-- **Phân cấp logic sư phạm 5 bậc cho đáp án ước lượng:** Đánh giá chính xác chiều sâu tư duy của học sinh từ Điểm neo Vàng (100%), Điểm neo Bạc (75%), Nhập đáp án tính đúng vào ô ước lượng (50% + nhắc nhở sư phạm), Trong khoảng nhưng không theo quy tắc/gõ bừa (35% + gợi ý phương pháp), đến Ngoài khoảng (0%).
-- **Mở rộng bài toán toàn diện:** Không chỉ dừng lại ở phép nhân và phép chia, tính năng mới được thiết kế mở rộng bao phủ cả **phép CỘNG** và **phép TRỪ** các số có 2 chữ số với nhau. Đây là nền tảng cốt lõi của môn Toán Lớp 3, giúp học sinh luyện tập trọn vẹn cả 4 phép tính cơ bản (Cộng, Trừ, Nhân, Chia).
-- **Phản hồi 2 tầng độc lập (Two-Tier Feedback UX):** Học sinh nhận được phản hồi tách bạch:
-  1. *Tầng 1 (Ước lượng):* Nhận xét độ hợp lý của con số ước lượng nhẩm, công nhận huy hiệu Điểm neo Vàng / Bạc, nhắc nhở nếu nhập trùng kết quả đúng, và cộng điểm thưởng tốc độ.
-  2. *Tầng 2 (Tính đúng):* Đánh giá độ chính xác tuyệt đối của kết quả tính toán chi tiết kèm điểm thưởng thời gian.
-
+    - **Phân cấp logic sư phạm 5 bậc cho đáp án ước lượng ($E$):**
+      1. 🥇 **Điểm neo Vàng (Gold Anchor - 100% Base, tức 55% tổng điểm = 5.5đ/10đ):** Học sinh áp dụng chuẩn xác quy tắc làm tròn đến hàng chục SGK Toán 3 cho cả 2 toán hạng ($E = E_{gold}$, ví dụ $54 + 27 \rightarrow 50 + 30 = 80$).
+      2. 🥈 **Điểm neo Bạc (Silver Anchors - 75% Base, tức 41.25% tổng điểm = 4.13đ/10đ):** Học sinh làm tròn 1 toán hạng, giữ nguyên toán hạng còn lại ($E \in SilverAnchors$, ví dụ $54 + 27 \rightarrow 50 + 27 = 77$ hoặc $54 + 30 = 84$).
+      3. 🥉 **Hạng Đồng (50% Base, tức 27.5% tổng điểm = 2.75đ/10đ — Đồng hạng & Bằng điểm nhau):**
+         * **3a. Nhập đáp án tính đúng vào ô ước lượng (`EXACT_MATCH_IN_ESTIMATE`):** Học sinh tính ra kết quả đúng rồi điền vào ô ước lượng (ví dụ nhập 81). Hệ thống tặng Huy hiệu Đồng kèm lời nhắc nhở sư phạm giúp học sinh hiểu bản chất là rèn luyện phản xạ nhẩm trước khi tính.
+         * **3b. Ước lượng cận trên / cận dưới (`BOUNDING_ANCHOR`):** Học sinh làm tròn cả 2 số cùng xuống hoặc cùng lên (floor+floor, ceil+ceil, ví dụ $50 + 20 = 70$ hoặc $60 + 30 = 90$). Hệ thống tặng Huy hiệu Đồng (điểm số ngang bằng với đặt tính đúng) và hướng dẫn làm tròn theo SGK.
+      4. 🌱 **Điểm khuyến khích / Gõ bừa trong dung sai (`TOLERANCE_ONLY` - 35% Base, tức 19.25% tổng điểm = 1.93đ/10đ):** Giá trị nằm trong khoảng dung sai $E \in [E_{min}, E_{max}]$ (±15%) nhưng không theo quy tắc làm tròn nào (ví dụ $73, 75, 83$). Hệ thống ghi nhận điểm khuyến khích và hiển thị gợi ý phương pháp làm tròn.
+      5. ✏️ **Ngoài khoảng (Out-of-range - 0% Base):** Giá trị quá xa thực tế ($E < E_{min}$ hoặc $E > E_{max}$).
 ### 1.3. Cơ sở khoa học & Đối chiếu chuẩn kiến thức kĩ năng Toán Lớp 3 (Bộ sách "Kết nối tri thức với cuộc sống")
 
 Hệ thống được thiết kế dựa trên sự đối chiếu nghiêm ngặt với các chủ đề bài học trong SGK Toán 3 (Nhà xuất bản Giáo dục Việt Nam - Bộ Kết nối tri thức với cuộc sống):
@@ -189,7 +191,7 @@ Scenario: Học sinh ước lượng đạt Điểm neo Vàng và tính đúng t
 #### Kịch bản 2 (B-03 & B-06): Phép cộng 2 chữ số — Điểm neo Bạc (75% Base) và Đặt tính đúng
 ```gherkin
 Scenario: Học sinh ước lượng đạt Điểm neo Bạc (làm tròn 1 toán hạng) và tính đúng
-  Given Đề bài là "54 + 27 = ?" với kết quả đúng là 81, Điểm neo Vàng là 80, Điểm neo Bạc là [77, 84, 90, 70]
+  Given Đề bài là "54 + 27 = ?" với kết quả đúng là 81, Điểm neo Vàng là 80, Điểm neo Bạc là [77, 84], Điểm neo cận trên/dưới là [70, 90]
   When Học sinh nhập ước lượng "84" (học sinh chỉ làm tròn 27 lên 30 và nhẩm 54 + 30 = 84)
   And Học sinh hoàn thành Pha 1 sau 24 giây
   Then Hệ thống đánh giá tầng 1: Điểm neo Bạc 🥈 (nhận 75% * 55% = 41.25% Base ước lượng)
@@ -216,7 +218,7 @@ Scenario: Học sinh tính ra kết quả đúng rồi gõ thẳng vào ô ướ
 #### Kịch bản 4 (B-03 & B-06): Ước lượng trong khoảng nhưng không theo quy tắc / gõ bừa (Nhận 35% Base + Gợi ý sư phạm)
 ```gherkin
 Scenario: Học sinh gõ một số nằm trong khoảng hợp lý nhưng không theo quy tắc làm tròn
-  Given Đề bài là "38 + 49 = ?" với khoảng ước lượng hợp lý là [74, 100], Điểm neo Vàng là 90, Điểm neo Bạc là [88, 89, 70]
+  Given Đề bài là "38 + 49 = ?" với khoảng ước lượng hợp lý là [74, 100], Điểm neo Vàng là 90, Điểm neo Bạc là [88, 89], Điểm neo cận dưới là [70]
   When Học sinh nhập ước lượng "83" (nằm trong [74, 100] nhưng không trùng điểm neo Vàng hay Bạc nào)
   And Học sinh bấm nộp Pha 1
   Then Hệ thống đánh giá tầng 1: Nhận 35% * 55% = 19.25% Base ước lượng
@@ -239,19 +241,26 @@ Scenario: Học sinh ước lượng sai lệch lớn nhưng đặt tính ra k�
   And Tổng điểm nhận được phản ánh rõ: học sinh làm đúng phép tính (30%) nhưng chưa đạt kỹ năng ước lượng
 ```
 
-#### Kịch bản 6 (B-12): Cơ chế đếm ngược thời gian thích ứng 60 giây & Xử lý hết giờ (Timeout)
+#### Kịch bản 6 (B-12): Cơ chế đếm ngược thời gian thích ứng 60 giây độc lập từng câu & Gợi ý sau 30 giây
 ```gherkin
-Scenario: Bộ đếm ngược thời gian 60 giây đếm hết giờ ở Pha 1 tự động khóa và chuyển sang Pha 2
+Scenario: Bộ đếm ngược thời gian 60 giây độc lập từng câu, gợi ý xuất hiện sau 30 giây
   Given Học sinh đang làm câu hỏi ước lượng số 1 ở Pha 1
-  And Đồng hồ đếm ngược từ 60 giây và hiển thị thanh thời gian trực quan
-  When Đồng hồ đếm về dưới 10 giây
-  Then Giao diện chuyển viền cảnh báo màu cam nhẹ nhàng, không phát âm thanh giật mình
+  And Đồng hồ đếm ngược từ 60 giây độc lập cho riêng câu số 1 (các câu khác chưa mở và không chạy giờ)
+  When Đồng hồ trôi qua 30 giây đầu tiên mà học sinh chưa chốt đáp án ước lượng (thời gian còn lại <= 30 giây)
+  Then Hộp gợi ý mách nước của Ong Vàng tự động xuất hiện trên màn hình
+  And Gợi ý hiển thị rõ cách làm tròn số chuẩn SGK (ví dụ: "Làm tròn 38 lên 40, 49 lên 50. Nhẩm 40 + 50 = ?")
+  And ARIA Live Region thông báo gợi ý cho học sinh dùng Screen Reader
+  When Đồng hồ đếm về dưới 15 giây
+  Then Giao diện chuyển viền cảnh báo màu đỏ nhẹ nhàng, thanh thời gian đổi sang màu đỏ nhấp nháy
   When Đồng hồ đếm về 0 giây (hết 60 giây) và học sinh đã điền "90" vào ô ước lượng nhưng chưa bấm nộp
   Then Hệ thống tự động khóa ô nhập ước lượng
   And Hệ thống tự động kích hoạt chuyển sang Pha 2 (Đặt tính đúng)
   And Giá trị "90" đã nhập được ghi nhận và chấm điểm Base bình thường (nhận Điểm neo Vàng 55%)
   And Điểm thưởng tốc độ Time Bonus của Pha 1 là 0%
   And Đồng hồ đếm ngược của Pha 2 tự động khởi tạo lại từ 60 giây
+  When Học sinh hoàn thành Pha 2 của Câu 1
+  Then Toàn bộ đồng hồ dừng lại; xuất hiện nút "Làm Câu tiếp theo (Câu 2)"
+  And Đồng hồ của Câu 2 TUYỆT ĐỐI CHƯA CHẠY cho đến khi học sinh chủ động bấm nút chuyển câu
 ```
 
 #### Kịch bản 7 (B-03 & B-06): Phép trừ 2 chữ số — Điểm neo Vàng và Tính đúng
