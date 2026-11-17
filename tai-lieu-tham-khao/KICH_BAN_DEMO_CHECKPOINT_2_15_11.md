@@ -2,7 +2,7 @@
 > **Mục tiêu:** Báo cáo tiến độ kết thúc giai đoạn M2 (Build) & Demo trực tiếp Vertical Slice (5 phút) với Giảng viên / Trợ giảng (TA).  
 > **Dự án:** Vườn Toán Lớp 3 — Track 2 (Track B: Thêm dạng bài *"Ước lượng trước khi tính đúng"*)  
 > **Mã nhóm:** `173820_n04` | **Thời lượng chuẩn:** Đúng 5 phút (4 phút trình diễn + 1 phút xin góp ý).  
-> **Mã Commit Checkpoint 2:** [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562) | **Branch:** `bkt-dev` & `main`.
+> **Mã Commit Checkpoint 2:** [`b0f2e16`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/b0f2e16) | **Branch:** `bkt-dev` & `main`.
 
 ---
 
