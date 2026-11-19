@@ -7,7 +7,7 @@
 > **Mã đề thi:** `KTPMUD-BKT-2026-PILOT` | **Slug đề tài:** `hoang_mai_toan`  
 > **Mã nhóm:** `173820_n04` · **Lớp:** 173820 (Học kỳ 1 năm học 2026–2027)  
 > **Repository Fork chính thức:** [github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter)  
-> **Phiên bản phát hành:** `bkt-2026-173820_n04-rc1` (Clean Release Candidate)  
+> **Phiên bản phát hành:** `bkt-2026-173820_n04-rc1` (Commit: [`5c2695d`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/5c2695d))  
 > **Bộ kiểm thử tự động:** **65 / 65 Tests PASS (100% Xanh)** · Jest 29 & Supertest  
 
 ---

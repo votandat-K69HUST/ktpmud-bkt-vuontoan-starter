@@ -81,6 +81,7 @@ pie title Tỷ lệ đóng góp của các thành viên trong nhóm 173820_n04
   - [`2753034`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/2753034e357591bbad6653ea9615a7cf73dd9056): Hoàn thiện đầy đủ file `PROGRESS.md` và nghiệm thu tiêu chí PC-1.
   - [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562916b328a2a47ea1e3eb8639e44f808795): Tích hợp hoàn thiện Vertical Slice Checkpoint 2 với bộ test tự động 65 ca test PASS xanh 100%.
   - [`b0f2e16`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/b0f2e16c90fe3f16954a234714dbf2e46cf11bb9): Tinh chỉnh kịch bản test công thái học, nghiệm thu ca test Empty Input Guard và chốt đóng băng Checkpoint 2.
+  - [`5c2695d`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/5c2695d): Hoàn thiện trọn bộ 10/10 tiêu chí Security/Privacy Checklist và nghiệm thu toàn diện báo cáo tiến độ PC-2.
 
 ---
 
@@ -130,6 +131,7 @@ pie title Tỷ lệ đóng góp của các thành viên trong nhóm 173820_n04
   - [`a17368e`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/a17368e91986c757c9a96e9fa22a466c1f1ec4f7): Mở rộng bài toán ước lượng thêm phép cộng trừ 2 chữ số, cập nhật ADR và 16 fixtures.
   - [`547bea7`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/547bea7bcfe773f309a4a712f2759e0ad74ef3ec): Cập nhật cơ chế tính thời gian đếm ngược 60s, thưởng tốc độ, phân bổ 70/30 và logic điểm neo.
   - [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562916b328a2a47ea1e3eb8639e44f808795): Hoàn thiện vertical slice Checkpoint 2, tích hợp chấm điểm server-side và 65 tests tự động.
+  - [`5c2695d`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/5c2695d): Thiết lập hoàn chỉnh GitHub Actions CI `.github/workflows/ci.yml` và chuẩn hóa README Clean Checkout.
 
 ---
 
@@ -172,6 +174,7 @@ pie title Tỷ lệ đóng góp của các thành viên trong nhóm 173820_n04
   - [`aca3ea9`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/aca3ea934fadc02251c761443405546c7bc02fc7): Tạo lập seed 99 tài khoản học sinh giả lập `hocsinh01`–`99` và dựng khung kiểm thử.
   - [`6b7e9d7`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/6b7e9d774a36b566ef71746c3769919f2c31ca11): Hoàn thiện yêu cầu M1, tài liệu ADR và báo cáo phân tích Checkpoint 1.
   - [`b0f2e16`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/b0f2e16c90fe3f16954a234714dbf2e46cf11bb9): Hoàn thiện bộ đôi bảo vệ thao tác Mouse Wheel Guard & Empty Input Guard, chặn lăn chuột nhảy số và hộp nhắc nhở khi ô rỗng.
+  - [`5c2695d`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/5c2695d): Biên soạn slide thuyết trình chuẩn Marp 7 phút `slides/slide_thuyet_trinh.md` và bảng phân công đóng góp `CONTRIBUTIONS.md`.
 
 ---
 
@@ -190,8 +193,8 @@ Ma trận dưới đây liên kết trực tiếp giữa **12 Tiêu chí Accepta
 | **B-07** | **Tuân thủ ranh giới an toàn** (Cấm sửa `auth.js`, session, admin) | Võ Tấn Đạt | `server/auth.js`<br>`artifacts/DECISIONS.md#adr-03` | Git Diff đối chiếu với tag `bkt-2026-v1` chứng minh không có bất kỳ dòng sửa đổi nào trong `server/auth.js` | [`0c18013`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/0c1801341eb8b37828a574a7ce9a7841231aabe4) | **PASS 100%** ✅ |
 | **B-08** | **Bộ kiểm thử tự động toàn diện** (Normal, Boundary, Invalid) | Bùi Tiến Đạt | `artifacts/TEST_PLAN.md`<br>`tests/unit/scoring.test.js`<br>`tests/integration/api.test.js` | 65 ca test tự động (55 unit + 10 integration) bao phủ đầy đủ ca hợp lệ, ca biên, lỗi nhập liệu và chống gian lận | [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562) | **PASS 100%** ✅ |
 | **B-09** | **Bổ sung script `npm test`** (Pass 100% từ Clean Checkout) | Bùi Tiến Đạt | `package.json`<br>`tests/` | Lệnh `npm test` chạy trọn vẹn Jest suite: **65 passed, 65 total** trong 0.94 giây | [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562) | **PASS 100%** ✅ |
-| **B-10** | **Cấu hình CI tự động** (GitHub Actions chạy test khi PR) | Võ Tấn Đạt | `.github/workflows/ci.yml`<br>`artifacts/DECISIONS.md#adr-05` | GitHub Actions workflow chạy tự động `npm ci` và `npm test` trên Ubuntu LTS & Node.js 20 | [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562) | **PASS 100%** ✅ |
-| **B-11** | **An toàn dữ liệu & Bí mật** (Không commit secret, chỉ synthetic) | Bùi Tiến Đạt | `tai-lieu-tham-khao/AI_USE.md`<br>`.gitignore` | Báo cáo rà soát Secret Scanner, toàn bộ 99 tài khoản `hocsinh01`–`99` là dữ liệu giả lập | [`0c18013`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/0c1801341eb8b37828a574a7ce9a7841231aabe4) | **PASS 100%** ✅ |
+| **B-10** | **Cấu hình CI tự động** (GitHub Actions chạy test khi PR) | Võ Tấn Đạt | `.github/workflows/ci.yml`<br>`artifacts/DECISIONS.md#adr-05` | GitHub Actions workflow chạy tự động `npm ci` và `npm test` trên Ubuntu LTS & Node.js 20 | [`5c2695d`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/5c2695d) | **PASS 100%** ✅ |
+| **B-11** | **An toàn dữ liệu & Bí mật** (Không commit secret, chỉ synthetic) | Bùi Tiến Đạt | `artifacts/SECURITY_PRIVACY_CHECKLIST.md`<br>`tai-lieu-tham-khao/AI_USE.md` | Bảng kiểm 10/10 tiêu chí an toàn, báo cáo quét Secret, toàn bộ 99 tài khoản `hocsinh01`–`99` là synthetic | [`0c18013`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/0c1801341eb8b37828a574a7ce9a7841231aabe4)<br>[`5c2695d`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/5c2695d) | **PASS 100%** ✅ |
 | **B-12** | **Khả năng tiếp cận & Trải nghiệm** (Tab/Enter, Wheel Guard, Empty Guard) | Nguyễn Minh Quang | `public/assets/js/pages/lesson.js`<br>`artifacts/REQUIREMENTS.md` | Điều hướng 100% bằng phím, chặn cuộn chuột đổi số, hộp nhắc nhở khi ô rỗng và chữ số siêu to | [`b0f2e16`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/b0f2e16) | **PASS 100%** ✅ |
 
 ---
@@ -213,6 +216,7 @@ gitGraph
    commit id: "547bea7" tag: "Scoring 70/30"
    commit id: "4077562" tag: "Checkpoint 2 Slice"
    commit id: "b0f2e16" tag: "UX Wheel & Empty Guard"
+   commit id: "5c2695d" tag: "M3 Hardening & Delivery"
 ```
 
 | Commit SHA | Tác giả chính | Thông điệp cam kết (Commit Message) | Ý nghĩa kỹ thuật & Sản phẩm bàn giao |
@@ -228,6 +232,7 @@ gitGraph
 | [`547bea7`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/547bea7) | Võ Tấn Đạt | `feat(design): cập nhật cơ chế tính thời gian đếm ngược 60s - thưởng tốc độ, phân bổ 70/30 và phân cấp logic điểm neo` | Cài đặt thiết kế thuật toán phân cấp 5 bậc, trọng số 70/30 và thưởng tốc độ. |
 | [`4077562`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/4077562) | Cả nhóm | `feat(track-b): complete checkpoint 2 vertical slice with 5-tier scoring, isolated timers & 65 passing tests` | Đóng gói hoàn chỉnh Vertical Slice Checkpoint 2: tích hợp Full-stack và 65 tests tự động. |
 | [`b0f2e16`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/b0f2e16) | Nguyễn Minh Quang | `fix(ux): bỏ thao tác cuộn lăn chuột để điền đáp án và thêm nhắc nhở khi chưa điền đáp án` | Nâng cấp công thái học: Mouse Wheel Guard chặn nhảy số và Empty Input Guard nhắc nhở. |
+| [`5c2695d`](https://github.com/votandat-K69HUST/ktpmud-bkt-vuontoan-starter/commit/5c2695d) | Cả nhóm | `chore(m3): hoan thien ci workflow, security checklist, contributions, slides va bao cao pc-2` | Hoàn thiện trọn bộ CI GitHub Actions, Security Checklist 10 tiêu chí, báo cáo đóng góp, slide thuyết trình 7 phút và nghiệm thu PC-2. |
 
 ---
 
