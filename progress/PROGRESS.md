@@ -121,7 +121,7 @@
 
 ## Kết quả cuối — Freeze 19/11/2026
 <!-- Báo cáo nghiệm thu chính thức tại thời điểm chốt Code Freeze 23:59 ngày 19/11/2026 -->
-- **Release Tag:** `bkt-2026-173820_n04-rc1` · **Commit SHA chốt Freeze:** Xem lịch sử commit sau khi đóng gói hồ sơ hoàn tất
+- **Release Tag:** `bkt-2026-173820_n04-rc1` · **Commit SHA chốt Freeze:** `2982aabee360c9d34987afad4edb3b29304b7a00` (`2982aab`)
 - **Trạng thái cuối từng mã AC:** Như bảng 2.2 — Đạt **100% Xong** (12/12 tiêu chí B-01 đến B-12 đều hoàn thành xuất sắc, không có ngoại lệ hay tiêu chí nợ).
 - **Những việc trong timeline chưa hoàn thành và lý do:** **Không có** (100% công việc theo timeline đều hoàn thành đúng hạn hoặc vượt tiến độ).
 - **Bộ kiểm thử tự động:** **65 / 65 tests PASS (100% Xanh)** bao phủ 4 phép tính, 5 bậc phân cấp điểm neo, Time Bonus và ranh giới bảo mật server-side.
