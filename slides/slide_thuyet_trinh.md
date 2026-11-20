@@ -3,10 +3,9 @@ marp: true
 theme: gaia
 _class: lead
 paginate: true
-backgroundColor: #f8fafc
-color: #1e293b
-header: 'Vườn Toán Lớp 3 — Track 2: Ước lượng trước khi tính đúng | Nhóm 173820_n04'
-footer: 'KTPMUD Hackathon Marathon 2026 — Lớp 173820'
+backgroundColor: #f1f5f9
+color: #0f172a
+footer: 'Track B: Vườn Toán Lớp 3  •  Nhóm 173820_N04  •  KTPMUD Hackathon 2026'
 ---
 
 # 🌱 VƯỜN TOÁN LỚP 3
